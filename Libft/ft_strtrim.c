@@ -6,11 +6,15 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:18:09 by timtan            #+#    #+#             */
-/*   Updated: 2025/05/30 19:45:40 by timtan           ###   ########.fr       */
+/*   Updated: 2025/06/03 17:20:58 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+Still need to account for null in the string
+*/
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
@@ -33,6 +37,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	s1_trim = malloc(end - start + 2);
 	if (!s1_trim)
 		return (NULL);
-	ft_strlcpy(s1_trim, s1, end - start + 2);
+	ft_strlcpy(s1_trim, s1 + start, end - start + 2);
 	return (s1_trim);
 }
