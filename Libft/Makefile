@@ -6,7 +6,7 @@
 #    By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 13:27:40 by timtan            #+#    #+#              #
-#    Updated: 2025/05/30 19:13:53 by timtan           ###   ########.fr        #
+#    Updated: 2025/06/06 22:07:45 by timtan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,24 @@ ft_substr.c \
 ft_strjoin.c \
 ft_strtrim.c \
 ft_split.c \
+ft_itoa.c \
+ft_strmapi.c \
+ft_striteri.c \
+ft_putchar_fd.c \
+ft_putstr_fd.c \
+ft_putendl_fd.c \
+ft_putnbr_fd.c \
+
+BONUS_FILES = ft_lstnew.c \
+			  ft_lstadd_front.c \
+			  ft_lstsize.c \
+			  ft_lstlast.c \
+			  ft_lstadd_back.c \
+			  ft_lstdelone.c \
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
+
+B_OBJ_FILES = $(BONUS_FILES:.c=.o)
 
 all: $(NAME)
 
@@ -50,8 +66,11 @@ $(NAME): $(OBJ_FILES) libft.h
 	ar rcs $(NAME) $(OBJ_FILES)
 #	cc $(CFLAGS) $(OBJ_FILES) -o $(PROGRAM_NAME)
 
+bonus: $(B_OBJ_FILES) $(OBJ_FILES) libft.h
+	ar rcs $(NAME) $(B_OBJ_FILES) $(OBJ_FILES)
+
 clean:
-	rm -f $(OBJ_FILES)
+	rm -f $(OBJ_FILES) $(B_OBJ_FILES)
 
 fclean: clean
 	rm -f $(NAME)

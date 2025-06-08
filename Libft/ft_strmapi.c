@@ -1,51 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/30 16:21:42 by timtan            #+#    #+#             */
-/*   Updated: 2025/06/04 19:30:19 by timtan           ###   ########.fr       */
+/*   Created: 2025/06/05 20:32:36 by timtan            #+#    #+#             */
+/*   Updated: 2025/06/05 22:15:17 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
- 
-Parameters:
-	s = the source string from which to create the substring.
-	start = The start index of the substring in 's'.
-	len = represents the maximum length of the substring.
-
-*/
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
+	char	*result;
 	size_t	s_len;
-	size_t	copy_len;
-	char	*sub;
+	size_t	i;
 
-	if (!s)
+	if (!s || !f)
 		return (NULL);
 	s_len = ft_strlen(s);
-	if (start >= s_len)
-		copy_len = 0;
-	else
-		copy_len = s_len - start;
-	if (len > copy_len)
-		len = copy_len;
-	sub = malloc(len + 1);
-	if (!sub)
+	result = malloc(s_len + 1);
+	if (!result)
 		return (NULL);
 	i = 0;
-	while (i < len)
+	while (i < s_len)
 	{
-		sub[i] = s[start + i];
+		result[i] = f((unsigned int)i, s[i]);
 		i++;
 	}
-	sub[i] = '\0';
-	return (sub);
+	result[i] = '\0';
+	return (result);
 }
