@@ -1,0 +1,16 @@
+Func: Check newline
+Desc: Checks whether a newline is present in the buffer or not. Used to determine whether the string in stash should be returned or not.
+
+Func: Stash the buffer.
+Desc: Stash is filled with the content in buffer.
+
+Func: String Join.
+Desc: Used in Stash the buffer to add contents to the buffer.
+
+Func: Get Next Line
+Desc: Reads the fd. Stash the buffer. If newline, return stash. If no newline, continue reading.
+
+Key Questions:
+How do I keep the reading state of each fd.
+
+Only read when 
