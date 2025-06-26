@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:33:49 by timtan            #+#    #+#             */
-/*   Updated: 2025/06/25 04:23:29 by timtan           ###   ########.fr       */
+/*   Updated: 2025/06/26 20:10:18 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 char	*get_next_line(int fd)
 {
-	 static char	buffer[FD_SIZE][BUFFER_SIZE];
+	 static char	stash[FD_SIZE][BUFFER_SIZE];
 	 ssize_t		read_bytes;
-	 char			*stash;
-	 char			**initial_address;
+	 char			buffer[BUFFER_SIZE];
 
-	 initial_address = buffer;
-	 read_bytes = read(fd, buffer[fd], BUFFER_SIZE);
+	 if (fd < 0 || fd > FD_SIZE || BUFFER_SIZE <= 0)
+		 return (NULL);
+	 read_bytes = read(fd, buffer, BUFFER_SIZE);
 	 if (read_bytes <= 0)
 		 return (NULL);
 	 stash = create_stash(&buffer, fd, read_bytes);

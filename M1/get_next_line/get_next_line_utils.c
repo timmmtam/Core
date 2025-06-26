@@ -6,13 +6,13 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:57:23 by timtan            #+#    #+#             */
-/*   Updated: 2025/06/25 04:23:29 by timtan           ###   ########.fr       */
+/*   Updated: 2025/06/26 20:10:20 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		has_newline(char *str)
+int	has_newline(char *str)
 {
 	ssize_t i;
 
