@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:33:49 by timtan            #+#    #+#             */
-/*   Updated: 2025/06/26 20:10:18 by timtan           ###   ########.fr       */
+/*   Updated: 2025/06/28 00:56:39 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_next_line(int fd)
 	 read_bytes = read(fd, buffer, BUFFER_SIZE);
 	 if (read_bytes <= 0)
 		 return (NULL);
-	 stash = create_stash(&buffer, fd, read_bytes);
+	
 	 while (!has_newline(stash))
 	 {
 		read_bytes = read(fd, buffer[fd], BUFFER_SIZE);

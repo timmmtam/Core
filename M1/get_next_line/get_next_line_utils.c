@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:57:23 by timtan            #+#    #+#             */
-/*   Updated: 2025/06/26 20:10:20 by timtan           ###   ########.fr       */
+/*   Updated: 2025/06/27 22:05:50 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_strjoin(char *str, char *str2)
 	return (free (str), free (str2), str_new);
 }
 
-char	*create_stash(char ***buffer, int fd, ssize_t read_bytes)
+char	**stash_it(char *str, char *buffer, size_t index, int fd)
 {
 	char	*str;
 	size_t	buf_len;
@@ -75,3 +75,11 @@ char	*create_stash(char ***buffer, int fd, ssize_t read_bytes)
 	str[i] = '\0';
 	return (str);
 }
+
+char	*to_return(char *str, ssize_t read_bytes)
+{
+	if (read_bytes <= 0)
+		return (NULL);
+	if (has_newline(str))
+		return (str);
+	
