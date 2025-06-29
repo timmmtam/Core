@@ -6,80 +6,122 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:57:23 by timtan            #+#    #+#             */
-/*   Updated: 2025/06/27 22:05:50 by timtan           ###   ########.fr       */
+/*   Updated: 2025/06/30 01:29:45 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	has_newline(char *str)
+int	has_newline(char **str)
 {
 	ssize_t i;
 
-	i = 0;
-	while (str)
+	if (!*str)
 	{
-		if (str[i] == '\n')
+		*str = malloc(1);
+		if (!*str)
+			return (-1);
+		*str[0] = '\0';
+		return (0);
+	}
+	i = 0;
+	while (*str[i] != '\0')
+	{
+		if (*str[i] == '\n')
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-char	*ft_strjoin(char *str, char *str2)
-{
-	size_t	str_len;
-	size_t	str2_len;
-	size_t	i;
-	char	*str_new;
-
-	str_len = 0;
-	str2_len = 0;
-	while (str[str_len])
-		str_len++;
-	while (str2[str2_len])
-		str2_len++;
-	str_new = malloc(str_len + str2_len + 1);
-	if (!str_new)
-		return (free (str), free (str2), NULL);
-	i = 0;
-	while (i < str_len)
-	{
-		str_new[i] = str[i];
-		i++;
-	}
-	i = 0;
-	while (i < str2_len)
-		str_new[str_len++] = str2[i++];
-	str_new[str_len] = '\0';
-	return (free (str), free (str2), str_new);
-}
-
-char	**stash_it(char *str, char *buffer, size_t index, int fd)
+char *my_strcpy(char *s1, size_t start)
 {
 	char	*str;
-	size_t	buf_len;
+	size_t	len;
 	size_t	i;
 
-	buf_len = 0;
-	while (*(buffer[fd][buf_len]) != '\n' && buf_len < read_bytes)
-		buf_len++;
-	str = malloc(buf_len + 1);
+	len = 0;
+	while (s1[start + len] != '\0')
+		len++;
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
 	i = 0;
-	while (i < buf_len)
-	{
-		str[i] = *buffer[fd]++;
-		if (str[i++] == '\n')
-			break;
-	}
+	while (i < len)
+		str[i++] = s1[start++];
 	str[i] = '\0';
 	return (str);
 }
 
-char	*to_return(char *str, ssize_t read_bytes)
+char	*take_from_stash(char **stash, int fd)
 {
-	if (read_bytes <= 0)
+	size_t	len;
+	size_t	i;
+	char	*temp_stash;
+	char	*str;
+
+	if (!stash[fd])
 		return (NULL);
-	if (has_newline(str))
-		return (str);
-	
+	len = 0;
+	while (stash[fd][len] != '\0')
+	{
+		if (stash[fd][len] == '\n')
+		{
+			len++;
+			break;
+		}
+		len++;
+	}
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = stash[fd][i];
+		i++;
+	}
+	str[i] = '\0';
+	temp_stash = my_strcpy(stash[fd], len);
+	free(stash[fd]);
+	stash[fd] = temp_stash;
+	return (str);
+}
+
+char	*ft_strjoin(char *stash, char *buffer, size_t buffer_len)
+{
+	size_t	stash_len;
+	size_t	i;
+	char	*str_new;
+
+	stash_len = 0;
+	while (stash[stash_len])
+		stash_len++;
+	str_new = malloc(stash_len + buffer_len + 1);
+	if (!str_new)
+		return (free (stash), NULL);
+	i = 0;
+	while (i < stash_len)
+	{
+		str_new[i] = stash[i];
+		i++;
+	}
+	i = 0;
+	while (i < buffer_len)
+		str_new[stash_len++] = buffer[i++];
+	str_new[stash_len] = '\0';
+	return (free (stash), str_new);
+}
+
+void	buffer_reset(char *buffer)
+{
+	size_t	i;
+
+	i = 0;
+	while(i < BUFFER_SIZE)
+	{
+		buffer[i] = '\0';
+		i++;
+	}
+	return ;
+}

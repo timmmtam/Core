@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:55:39 by timtan            #+#    #+#             */
-/*   Updated: 2025/06/24 19:06:18 by timtan           ###   ########.fr       */
+/*   Updated: 2025/06/30 01:28:18 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@
 # endif
 
 # ifndef FD_SIZE
-#  define FD_SIZE 20
+#  define FD_SIZE 1024
 # endif
 
 char	*get_next_line(int fd);
-int		has_newline(char *str);
-char	*ft_strjoin(char *str, char *str2);
-char	*create_stash(char ***buffer, int fd, ssize_t read_bytes);
+int		has_newline(char **str);
+char	*my_strcpy(char *s1, size_t start);
+char	*take_from_stash(char **stash, int fd);
+char	*ft_strjoin(char *stash, char *buffer, size_t buffer_len);
+void	buffer_reset(char *buffer);
 
 #endif
