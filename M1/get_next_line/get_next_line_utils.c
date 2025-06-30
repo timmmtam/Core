@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:57:23 by timtan            #+#    #+#             */
-/*   Updated: 2025/06/30 01:29:45 by timtan           ###   ########.fr       */
+/*   Updated: 2025/06/30 19:35:45 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	has_newline(char **str)
 		return (0);
 	}
 	i = 0;
-	while (*str[i] != '\0')
+	while ((*str)[i] != '\0')
 	{
-		if (*str[i] == '\n')
+		if ((*str)[i] == '\n')
 			return (1);
 		i++;
 	}

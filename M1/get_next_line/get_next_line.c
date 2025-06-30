@@ -6,11 +6,12 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:33:49 by timtan            #+#    #+#             */
-/*   Updated: 2025/06/30 01:27:53 by timtan           ###   ########.fr       */
+/*   Updated: 2025/06/30 21:03:49 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <unistd.h>
 
 char	*get_next_line(int fd)
 {
@@ -33,6 +34,6 @@ char	*get_next_line(int fd)
 	}
 	str_to_return = take_from_stash(stash, fd);
 	if (str_to_return[0] == '\0')
-		return (NULL);
+		return (free (str_to_return), NULL);
 	return (str_to_return);
 }

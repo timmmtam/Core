@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 00:31:40 by timtan            #+#    #+#             */
-/*   Updated: 2025/06/30 01:16:33 by timtan           ###   ########.fr       */
+/*   Updated: 2025/06/30 19:41:42 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 	str = get_next_line(0);
 	while (str)
 	{
-		write(1, str, 5);
+		write(1, str, 6);
 		free (str);
 		str = get_next_line(0);
 	}
