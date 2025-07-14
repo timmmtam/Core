@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 16:15:06 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/13 18:28:38 by timtan           ###   ########.fr       */
+/*   Created: 2025/07/14 23:42:00 by timtan            #+#    #+#             */
+/*   Updated: 2025/07/14 23:43:38 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	main(void)
+ssize_t	ft_strlen(char *str)
 {
-	void	*ptr;
+	ssize_t	i;
 
-	ptr = (char *)"hello";
-	printf("%#13.10xhi\n", 4294967295U);
-
-	return (0);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
