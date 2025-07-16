@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_revstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 16:15:06 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/16 21:43:46 by timtan           ###   ########.fr       */
+/*   Created: 2025/07/16 18:50:30 by timtan            #+#    #+#             */
+/*   Updated: 2025/07/16 19:04:31 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "ft_print.f"
 
-int	main(void)
+char	*ft_revstr(char *str)
 {
-	void	*ptr;
+	char	tmp;
+	size_t	str_len;
+	size_t	i;
 
-	ptr = (unsigned long long *)73492348597134957;
-	printf("% 6.5dhi\n", 5);
-	return (0);
+	if (!str)
+		return (NULL);
+	str_len = 0;
+	i = 0;
+	while (str[str_len])
+		str_len++;
+	while (i < str_len - 1)
+	{
+		tmp = str[i];
+		str[i] = str[str_len - 1];
+		str[str_len - 1] = tmp;
+		i++;
+		str_len--;
+	}
+	return (str);
 }
