@@ -6,13 +6,13 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:59:27 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/16 21:57:07 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:32:36 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*sign_check(int n, int flags)
+static char	*sign_check(int n, int flags)
 {
 	char	*str;
 	ssize_t	i;
@@ -33,7 +33,7 @@ char	*sign_check(int n, int flags)
 	return (NULL);
 }
 
-char	*d_convert(int n, int flags, int width, char *fstring)
+char	*d_convert(int n, int flags, ssize_t width, char *fstring)
 {
 	char	*str;
 	char	*buffer;
@@ -45,4 +45,9 @@ char	*d_convert(int n, int flags, int width, char *fstring)
 	buf_len = ft_strlen(buffer);
 	str = ft_strjoin(pcs_check(flags, fstring, buf_len), buffer);
 	str = ft_strjoin(sign_check(n, flags), str);
-	
+	if (flags & FLAG_MNS)
+		str = ft_strjoin(width_check(flags, width, str), str);
+	else
+		str = ft_strjoin(str, width_check(flags, width, str), str);
+	return (str);
+}

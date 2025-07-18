@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   c_convert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 20:59:52 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/10 22:01:11 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:28:55 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*c_convert(char c, int flags, size_t width)
+char	*c_convert(char c, int flags, ssize_t width)
 {
 	char	*str;
-	size_t	str_len;
-	size_t	i;
+	ssize_t	str_len;
+	ssize_t	i;
 
 	i = 0;
 	strlen = 1;

@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   padding.c                                          :+:      :+:    :+:   */
+/*   u_convert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 15:19:54 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/11 15:24:40 by timtan           ###   ########.fr       */
+/*   Created: 2025/07/17 16:04:44 by timtan            #+#    #+#             */
+/*   Updated: 2025/07/17 16:34:31 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*padding(char *str, size_t size, int pad)
+char	*u_convert(unsigned int n, int flags, ssize_t width, char *fstring)
 {
-	size_t	i;
-	char	c;
+	char	*str;
+	char	*buffer;
+	ssize_t	buf_len;
 
-	i = 0;
-	if (pad == 0)
-		c = '0';
+	if (flags & FLAG_PCS || flags & FLAG_MNS)
+		flags & ~FLAG_ZRO;
+	buffer = ft_uinttoa(n);
+	buf_len = ft_strlen(buffer);
+	str = ft_strjoin(pcs_check(flags, fstring, buf_len), buffer);
+	if (flags & FLAG_MNS)
+		str = ft_strjoin(width_check(flags, width, str), str);
 	else
-		c = ' ';
-	while (i < size)
-	{
-		str[i] = c;
-		i++;
-	}
-	str[i] = '\0';
+		str = ft_strjoin(str, width_check(flags, width, str), str);
 	return (str);
 }

@@ -6,13 +6,13 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:37:29 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/14 23:39:56 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:43:08 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strjoin(char *str1, char *str2,)
+char	*ft_strjoin(char *str1, char *str2)
 {
 	ssize_t	str1_len;
 	ssize_t	str2_len;

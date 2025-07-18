@@ -6,13 +6,13 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 15:35:08 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/16 17:34:18 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:31:57 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	phex_converter(unsigned long long n, int flags)
+static char	phex_converter(unsigned long long n, int flags)
 {
 	if (n >= 0 && n <= 9)
 		return ('0' + n);
@@ -25,7 +25,7 @@ char	phex_converter(unsigned long long n, int flags)
 	}
 }
 
-ssize_t	ullongtohex(char **buffer, unsigned long long n, int flags)
+static ssize_t	ullongtohex(char **buffer, unsigned long long n, int flags)
 {
 	ssize_t	i;
 
@@ -41,7 +41,7 @@ ssize_t	ullongtohex(char **buffer, unsigned long long n, int flags)
 	return (i + 1);
 }
 
-char	*p_convert(void *p, int flags, int width)
+char	*p_convert(void *p, int flags, ssize_t width)
 {
 	unsigned long long	address;
 	char				*buffer;
@@ -58,13 +58,13 @@ char	*p_convert(void *p, int flags, int width)
 	buf_len = ullongtohex(&buffer, address, flags);
 	if (flags & FLAGS_ZRO)
 	{
-		str = ft_strjoin(width_check(flags, width, buf_len), buffer);
+		str = ft_strjoin(width_check(flags, width, buffer), buffer);
 		str = ft_strjoin(alt_check(FLAG_ALT), str);
 	}
 	else
 	{
 		str = ft_strjoin(alt_check(FLAG_ALT), buffer);
-		str = ft_strjoin(width_check(flags, width, ft_strlen(str)), str);
+		str = ft_strjoin(width_check(flags, width, str), str);
 	}
 	return (str);
 }

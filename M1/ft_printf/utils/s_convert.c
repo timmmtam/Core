@@ -6,13 +6,13 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:01:43 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/11 19:14:46 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:39:16 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*s_fill(char *str, char *s, ssize_t start, ssize_t count)
+static char	*s_fill(char *str, char *s, ssize_t start, ssize_t count)
 {
 	ssize_t	i;
 
@@ -22,7 +22,7 @@ char	*s_fill(char *str, char *s, ssize_t start, ssize_t count)
 	return (str);
 }
 
-char	*s_default(char *s, char *str, ssize_t str_len)
+static char	*s_default(char *s, char *str, ssize_t str_len)
 {
 	str = malloc(str_len + 1);
 	if (!str)
@@ -31,7 +31,26 @@ char	*s_default(char *s, char *str, ssize_t str_len)
 	return (str);
 }
 
-char	*s_convert(char *s, int flags, int width, char *fstring)
+static char	*padding(char *str, size_t size, int pad)
+{
+	size_t	i;
+	char	c;
+
+	i = 0;
+	if (pad == 0)
+		c = '0';
+	else
+		c = ' ';
+	while (i < size)
+	{
+		str[i] = c;
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+char	*s_convert(char *s, int flags, ssize_t width, char *fstring)
 {
 	char	*str;
 	ssize_t	str_len;
