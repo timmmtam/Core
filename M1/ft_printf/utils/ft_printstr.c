@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 16:15:06 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/21 18:09:45 by timtan           ###   ########.fr       */
+/*   Created: 2025/07/21 18:55:29 by timtan            #+#    #+#             */
+/*   Updated: 2025/07/21 18:57:08 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	main(void)
+void	ft_printstr(char *s)
 {
-	void	*ptr;
+	size_t	i;
 
-	ptr = (unsigned long long *)73492348597134957;
-	printf("%013dhi\n", 5);
-	return (0);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return ;
 }

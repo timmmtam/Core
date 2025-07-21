@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 15:32:58 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/17 16:44:37 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/21 20:22:13 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 # define FLAG_SPC 0b00010000
 # define FLAG_PCS 0b00100000
 # define FLAG_XXX 0b01000000
+
+typedef struct
+{
+	int	flags;
+	ssize_t	width;
+	ssize_t	precision;
+} fwp;
 
 int		ft_printf(const char *, ...);
 char	*c_convert(char c, int flags, ssize_t width);
