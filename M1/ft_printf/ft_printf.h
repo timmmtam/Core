@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 15:32:58 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/21 20:22:13 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/23 21:50:42 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct
 } fwp;
 
 int		ft_printf(const char *, ...);
+int		fstring_parser(char **fstring, va_list args);
 char	*c_convert(char c, int flags, ssize_t width);
 char	*s_convert(char *s, int flags, ssize_t width, char *fstring);
 char	*p_convert(void *p, int flags, ssize_t width);
@@ -48,6 +49,5 @@ char	*ft_uinttoa(unsigned int n);
 char	*ft_strjoin(char *str1, char *str2);
 char	*ft_revstr(char	*str);
 ssize_t	ft_strlen(char *str);
-ssize_t	precision(int flags, char *fstring);
 
 #endif

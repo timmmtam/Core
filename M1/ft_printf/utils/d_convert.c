@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:59:27 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/17 16:32:36 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/23 19:39:28 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,21 @@ static char	*sign_check(int n, int flags)
 	return (NULL);
 }
 
-char	*d_convert(int n, int flags, ssize_t width, char *fstring)
+char	*d_convert(int n, fwp fwp)
 {
 	char	*str;
 	char	*buffer;
 	ssize_t	buf_len;
 
-	if (flags & FLAG_PCS || flags & FLAG_MNS)
-		flags & ~FLAG_ZRO;
+	if (fwp->flags & FLAG_PCS || fwp->flags & FLAG_MNS)
+		fwp->flags & ~FLAG_ZRO;
 	buffer = ft_itoa(n);
 	buf_len = ft_strlen(buffer);
-	str = ft_strjoin(pcs_check(flags, fstring, buf_len), buffer);
-	str = ft_strjoin(sign_check(n, flags), str);
-	if (flags & FLAG_MNS)
-		str = ft_strjoin(width_check(flags, width, str), str);
+	str = ft_strjoin(pcs_check(fwp->flags, fwp->precision, buf_len), buffer);
+	str = ft_strjoin(sign_check(n, fwp->flags), str);
+	if (fwp->flags & FLAG_MNS)
+		str = ft_strjoin(width_check(fwp->flags, fwp->width, str), str);
 	else
-		str = ft_strjoin(str, width_check(flags, width, str), str);
+		str = ft_strjoin(str, width_check(fwp->flags, fwp->width, str), str);
 	return (str);
 }

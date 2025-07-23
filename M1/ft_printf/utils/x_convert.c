@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 17:04:34 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/17 16:36:55 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/23 19:49:55 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,30 +53,30 @@ static char	*uinttohex(char *fstring, unsigned int n, int flags)
 	return (ft_revstr(buffer));
 }
 
-char	*x_convert(unsigned int n, int flags, ssize_t width, char *fstring)
+char	*x_convert(unsigned int n, fwp fwp)
 {
 	char	*buffer;
 	char	*str;
 	ssize_t	buf_len;
 	ssize_t str_len;
 
-	if (flags & FLAG_PCS || flags & FLAG_MNS)
-		flags & ~FLAG_ZRO;
-	buffer = uinttohex(&buffer, n flags);
+	if (fwp->flags & FLAG_PCS || fwp->flags & FLAG_MNS)
+		fwp->flags & ~FLAG_ZRO;
+	buffer = uinttohex(&buffer, n, fwp->flags);
 	buf_len = ft_strlen(buffer);
-	str = ft_strjoin(pcs_check(flags, fstring, buf_len), buffer);
-	if (flags & FLAG_ZRO)
+	str = ft_strjoin(pcs_check(fwp->flags, fwp->fstring, buf_len), buffer);
+	if (fwp->flags & FLAG_ZRO)
 	{
-		str = ft_strjoin(width_check(flags, width, str), str);
-		str = ft_strjoin(alt_check(flags), str);
+		str = ft_strjoin(width_check(fwp->flags, fwp->width, str), str);
+		str = ft_strjoin(alt_check(fwp->flags), str);
 	}
 	else
 	{
-		str = ft_strjoin(alt_check(flags), str);
-		if (flags & FLAG_MNS)
-			str = ft_strjoin(width_check(flags, width, str), str);
+		str = ft_strjoin(alt_check(fwp->flags), str);
+		if (fwp->flags & FLAG_MNS)
+			str = ft_strjoin(width_check(fwp->flags, fwp->width, str), str);
 		else
-			str = ft_strjoin(str, width_check(flags, width, str));
+			str = ft_strjoin(str, width_check(fwp->flags, fwp->width, str));
 	}
 	return (str);
 }
