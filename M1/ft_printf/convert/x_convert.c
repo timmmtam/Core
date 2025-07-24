@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 17:04:34 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/23 19:49:55 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/24 18:56:32 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,19 @@ static char	xhex_converter(unsigned int n, int flags)
 	}
 }
 
-static char	*uinttohex(char *fstring, unsigned int n, int flags)
+static char	*uinttohex(ssize_t precision, unsigned int n, int flags)
 {
 	char	*buffer;
 	ssize_t	i;
-	ssize_t	precision;
 
 	buffer = malloc(9);
 	if (!buffer)
 		return (NULL);
-	precision = precision(flags, fstring);
 	if (flags & FLAG_PCS)
-		if (precision = 0 && n == 0)
+		if (precision == 0 && n == 0)
 		{
 			buffer[0] = '\0';
-			return (buffer)
+			return (buffer);
 		}
 	i = 0;
 	while (n > 15 && i < 9)
@@ -53,30 +51,29 @@ static char	*uinttohex(char *fstring, unsigned int n, int flags)
 	return (ft_revstr(buffer));
 }
 
-char	*x_convert(unsigned int n, fwp fwp)
+char	*x_convert(unsigned int n, properties fwp)
 {
 	char	*buffer;
 	char	*str;
 	ssize_t	buf_len;
-	ssize_t str_len;
 
-	if (fwp->flags & FLAG_PCS || fwp->flags & FLAG_MNS)
-		fwp->flags & ~FLAG_ZRO;
-	buffer = uinttohex(&buffer, n, fwp->flags);
+	if (fwp.flags & FLAG_PCS || fwp.flags & FLAG_MNS)
+		fwp.flags &= ~FLAG_ZRO;
+	buffer = uinttohex(fwp.precision, n, fwp.flags);
 	buf_len = ft_strlen(buffer);
-	str = ft_strjoin(pcs_check(fwp->flags, fwp->fstring, buf_len), buffer);
-	if (fwp->flags & FLAG_ZRO)
+	str = ft_strjoin(pcs_check(fwp.precision, buf_len), buffer);
+	if (fwp.flags & FLAG_ZRO)
 	{
-		str = ft_strjoin(width_check(fwp->flags, fwp->width, str), str);
-		str = ft_strjoin(alt_check(fwp->flags), str);
+		str = ft_strjoin(width_check(fwp.flags, fwp.width, str), str);
+		str = ft_strjoin(alt_check(fwp.flags), str);
 	}
 	else
 	{
-		str = ft_strjoin(alt_check(fwp->flags), str);
-		if (fwp->flags & FLAG_MNS)
-			str = ft_strjoin(width_check(fwp->flags, fwp->width, str), str);
+		str = ft_strjoin(alt_check(fwp.flags), str);
+		if (fwp.flags & FLAG_MNS)
+			str = ft_strjoin(width_check(fwp.flags, fwp.width, str), str);
 		else
-			str = ft_strjoin(str, width_check(fwp->flags, fwp->width, str));
+			str = ft_strjoin(str, width_check(fwp.flags, fwp.width, str));
 	}
 	return (str);
 }

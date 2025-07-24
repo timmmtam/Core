@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   u_convert.c                                        :+:      :+:    :+:   */
+/*   c_convert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 16:04:44 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/23 19:42:00 by timtan           ###   ########.fr       */
+/*   Created: 2025/07/10 20:59:52 by timtan            #+#    #+#             */
+/*   Updated: 2025/07/24 18:37:08 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*u_convert(unsigned int n, fwp)
+char	*c_convert(char c, properties fwp)
 {
 	char	*str;
-	char	*buffer;
-	ssize_t	buf_len;
+	ssize_t	str_len;
+	ssize_t	i;
 
-	if (fwp->flags & FLAG_PCS || fwp->flags & FLAG_MNS)
-		fwp->flags & ~FLAG_ZRO;
-	buffer = ft_uinttoa(n);
-	buf_len = ft_strlen(buffer);
-	str = ft_strjoin(pcs_check(fwp->flags, fwp->precision, buf_len), buffer);
-	if (fwp->flags & FLAG_MNS)
-		str = ft_strjoin(width_check(fwp->flags, fwp->width, str), str);
+	i = 0;
+	str_len = 1;
+	if (fwp.width > 1)
+		str_len = fwp.width;
+	str = malloc(str_len + 1);
+	if (!str)
+		return (NULL);
+	if (str_len == fwp.width)
+	{
+		while (i < str_len)
+			str[i++] = ' ';
+		str[i] = '\0';
+	}
+	if (fwp.flags & FLAG_MNS)
+		str[0] = c;
 	else
-		str = ft_strjoin(str, width_check(fwp->flags, fwp->width, str), str);
+		str[str_len - 1] = c;
 	return (str);
 }

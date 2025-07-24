@@ -6,25 +6,25 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 23:46:05 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/23 19:38:13 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/24 18:48:32 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*pcs_check(int flags, ssize_t precision, ssize_t buf_len)
+char	*pcs_check(ssize_t precision, ssize_t buf_len)
 {
 	ssize_t	i;
 	char	*str;
 
 	str = NULL;
 	i = 0;
-	if (fwp->precision > buf_len)
+	if (precision > buf_len)
 	{
-		str = malloc(fwp->precision - buf_len + 1);
+		str = malloc(precision - buf_len + 1);
 		if (!str)
 			return (NULL);
-		while (i < (fwp->precision - buf_len + 1))
+		while (i < (precision - buf_len + 1))
 			str[i++] = '0';
 		str[i] = '\0';
 	}
@@ -69,7 +69,7 @@ char	*alt_check(int flags)
 		if (!str)
 			return (NULL);
 		str[i++] = '0';
-		if (flags & FLAGS_XXX)
+		if (flags & FLAG_XXX)
 			str[i++] = 'X';
 else
 			str[i++] = 'x';

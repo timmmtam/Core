@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   precision.c                                        :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 18:40:21 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/21 20:38:29 by timtan           ###   ########.fr       */
+/*   Created: 2025/07/21 18:55:29 by timtan            #+#    #+#             */
+/*   Updated: 2025/07/24 21:37:59 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-ssize_t	precision(int flags, char **fstring)
+void	ft_printstr(char *s)
 {
-	ssize_t	precision;
+	size_t	i;
 
-	precision = 0;
-	while (**fstring >= '0' && **fstring <= '9')
+	i = 0;
+	if (!s)
 	{
-		precision = precision * 10 + (**fstring - '0');
-		*fstring++;
+		write(1, "(null)\n", 7);
+		return ;
 	}
-	return (precision);
+	while (s[i] != '\0')
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return ;
 }

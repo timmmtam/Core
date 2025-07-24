@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:37:29 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/17 16:43:08 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/24 18:53:03 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_strjoin(char *str1, char *str2)
 	}
 	i = 0;
 	while (i < str2_len)
-		str_new[str1_len++] = buffer[i++];
-	str_new[stash_len] = '\0';
+		str_new[str1_len++] = str2[i++];
+	str_new[str1_len] = '\0';
 	return (free (str1), free (str2), str_new);
 }

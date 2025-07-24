@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 15:32:14 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/24 01:04:50 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/24 22:01:11 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_printf(const char *format, ...)
 
 	va_start(args, format);
 	bytes = 0;
-	while (format)
+	while (*format)
 	{
 		if (*format == '%')
 		{
@@ -28,10 +28,11 @@ int	ft_printf(const char *format, ...)
 		}
 		else
 		{
-			write(1, &*format, 1);
+			write(1, format, 1);
 			bytes++;
 		}
 		format++;
 	}
+	va_end(args);
 	return (bytes);
 }

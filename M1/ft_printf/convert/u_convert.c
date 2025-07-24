@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c_convert.c                                        :+:      :+:    :+:   */
+/*   u_convert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/10 20:59:52 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/23 19:26:25 by timtan           ###   ########.fr       */
+/*   Created: 2025/07/17 16:04:44 by timtan            #+#    #+#             */
+/*   Updated: 2025/07/24 18:56:03 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*c_convert(char c, fwp fwp)
+char	*u_convert(unsigned int n, properties fwp)
 {
 	char	*str;
-	ssize_t	str_len;
-	ssize_t	i;
+	char	*buffer;
+	ssize_t	buf_len;
 
-	i = 0;
-	strlen = 1;
-	if (fwp->width > 1)
-		strlen = fwp->width;
-	str = malloc(str_len + 1);
-	if (!str)
-		return (NULL);
-	if (strlen == fwp->width)
-	{
-		while (i < strlen)
-			str[i++] = ' ';
-		str[i] = '\0';
-	}
-	if (fwp->flags & FLAG_MNS)
-		str[0] = c;
+	if (fwp.flags & FLAG_PCS || fwp.flags & FLAG_MNS)
+		fwp.flags &= ~FLAG_ZRO;
+	buffer = ft_uinttoa(n);
+	buf_len = ft_strlen(buffer);
+	str = ft_strjoin(pcs_check(fwp.precision, buf_len), buffer);
+	if (fwp.flags & FLAG_MNS)
+		str = ft_strjoin(width_check(fwp.flags, fwp.width, str), str);
 	else
-		str[str_len - 1] = c;
+		str = ft_strjoin(str, width_check(fwp.flags, fwp.width, str));
 	return (str);
 }

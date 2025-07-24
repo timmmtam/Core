@@ -6,15 +6,16 @@
 #    By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/03 21:35:07 by timtan            #+#    #+#              #
-#    Updated: 2025/07/23 21:47:08 by timtan           ###   ########.fr        #
+#    Updated: 2025/07/24 19:34:01 by timtan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+#NAME = libftprintf.a
+NAME = program
 
 CFLAGS = -Wall -Wextra -Werror -I.
 
-VPATH = utils
+VPATH = convert tools
 
 SRC_FILES = ft_printf.c\
 			fstring_parser.c\
@@ -31,11 +32,12 @@ SRC_FILES = ft_printf.c\
 			ft_strjoin.c\
 			ft_strlen.c\
 			ft_uinttoa.c\
+			main.c\
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 all: $(OBJ_FILES)
-	cc $(CFLAGS) $(OBJ_FILES) -o myprogram
+	cc $(CFLAGS) $(OBJ_FILES) -o $(NAME)
 
 #$(NAME): $(OBJ_FILES)
 #	ar rcs $(NAME) $(OBJ_FILES)

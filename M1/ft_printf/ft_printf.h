@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 15:32:58 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/23 21:50:42 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/24 18:49:13 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,24 @@ typedef struct
 	int	flags;
 	ssize_t	width;
 	ssize_t	precision;
-} fwp;
+} properties;
 
 int		ft_printf(const char *, ...);
 int		fstring_parser(char **fstring, va_list args);
-char	*c_convert(char c, int flags, ssize_t width);
-char	*s_convert(char *s, int flags, ssize_t width, char *fstring);
-char	*p_convert(void *p, int flags, ssize_t width);
-char	*d_convert(int n, int flags, ssize_t width, char *fstring);
-char	*u_convert(unsigned int n, int flags, ssize_t width, char *fstring);
-char	*x_convert(unsigned int n, int flags, ssize_t width, char *fstring);
-char	*pcs_check(int flags, char *fstring, ssize_t buf_len);
+char	*c_convert(char c, properties fwp);
+char	*s_convert(char *s, properties fwp);
+char	*p_convert(void *p, properties fwp);
+char	*d_convert(int n, properties fwp);
+char	*u_convert(unsigned int n, properties fwp);
+char	*x_convert(unsigned int n, properties fwp);
+char	*pcs_check(ssize_t precision, ssize_t buf_len);
 char	*width_check(int flags, int width, char *str);
 char	*alt_check(int flags);
 char	*ft_itoa(int n);
 char	*ft_uinttoa(unsigned int n);
 char	*ft_strjoin(char *str1, char *str2);
 char	*ft_revstr(char	*str);
+void	ft_printstr(char *s);
 ssize_t	ft_strlen(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 21:08:09 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/16 21:17:16 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/24 18:51:50 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	count_digit(int nb)
 static char	*intmin(void)
 {
 	char	*str;
-	char	*num[12];
+	char	*num;
 	int		i;
 
 	str = malloc(12);
@@ -68,7 +68,7 @@ static char	*intmin(void)
 		str[i] = num[i];
 		i++;
 	}
-	str[i] = '\0'
+	str[i] = '\0';
 	return (str);
 }
 

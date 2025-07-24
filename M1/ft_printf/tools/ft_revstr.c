@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr.c                                      :+:      :+:    :+:   */
+/*   ft_revstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/21 18:55:29 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/21 18:57:08 by timtan           ###   ########.fr       */
+/*   Created: 2025/07/16 18:50:30 by timtan            #+#    #+#             */
+/*   Updated: 2025/07/24 18:52:13 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printstr(char *s)
+char	*ft_revstr(char *str)
 {
+	char	tmp;
+	size_t	str_len;
 	size_t	i;
 
+	if (!str)
+		return (NULL);
+	str_len = 0;
 	i = 0;
-	while (s[i] != '\0')
+	while (str[str_len])
+		str_len++;
+	while (i < str_len - 1)
 	{
-		write(1, &s[i], 1);
+		tmp = str[i];
+		str[i] = str[str_len - 1];
+		str[str_len - 1] = tmp;
 		i++;
+		str_len--;
 	}
-	return ;
+	return (str);
 }
