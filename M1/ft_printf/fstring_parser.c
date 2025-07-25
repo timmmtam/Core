@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 18:52:02 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/24 21:35:39 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/25 20:40:41 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,19 @@ static int	convert(properties fwp, char **fstring, va_list args)
 	else if (**fstring == 'x' || **fstring == 'X')
 		str = x_convert(va_arg(args, unsigned int), fwp);
 	else if (**fstring == '%')
-		str = "%";
+	{
+		write (1, "%", 1);
+		return (1);
+	}
 	else
 		str = NULL;
-	ft_printstr(str);
-	return ((int)ft_strlen(str));
+	return (ft_printstr(str, fwp));
 }
 
 int	fstring_parser(char **fstring, va_list args)
 {
 	properties	fwp;
+	int			bytes;
 
 	fwp.precision = 1;
 	fwp.width = 0;
@@ -109,5 +112,6 @@ int	fstring_parser(char **fstring, va_list args)
 		fwp.width = width_adder(&(fwp.flags), fstring, &(fwp.precision));
 	if (fwp.flags & FLAG_PCS || fwp.flags & FLAG_MNS)
 		fwp.flags &= ~FLAG_ZRO;
-	return (convert(fwp, fstring, args));
+	bytes = convert(fwp, fstring, args);
+	return (bytes);
 }

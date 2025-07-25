@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 16:15:06 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/24 22:01:48 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/25 18:14:00 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ int	main(void)
 	void	*ptr;
 
 	ptr = (unsigned long long *)73492348597134957;
-	printf("%-10clolfu\n", 65);
+	printf("%010p\n", "Hello");
 	return (0);
 }

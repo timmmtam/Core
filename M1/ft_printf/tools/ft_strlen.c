@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 23:42:00 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/14 23:43:38 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/25 17:08:56 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ ssize_t	ft_strlen(char *str)
 {
 	ssize_t	i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (str[i] != '\0')
 		i++;

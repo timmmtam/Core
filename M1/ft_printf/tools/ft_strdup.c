@@ -1,48 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/21 18:55:29 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/25 21:30:49 by timtan           ###   ########.fr       */
+/*   Created: 2025/07/25 21:23:13 by timtan            #+#    #+#             */
+/*   Updated: 2025/07/25 21:26:56 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	nullcase(properties fwp)
+char	*ft_strdup(char *s)
 {
-	if (fwp.flags & FLAG_PCS)
-	{
-		if (fwp.precision > 5)
-		{
-			write(1, "(null)", 6);
-			return (6);
-		}
-		else
-			return (0);
-	}
-	else
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-}
-
-int	ft_printstr(char *s, properties fwp)
-{
-	int	i;
+	char	*str;
+	ssize_t	s_len;
+	ssize_t	i;
 
 	i = 0;
 	if (!s)
-		return (nullcase(fwp));
+		return (NULL);
+	s_len = ft_strlen(s);
+	str = malloc(s_len + 1);
+	if (!str)
+		return (NULL);
 	while (s[i] != '\0')
 	{
-		write(1, &s[i], 1);
+		str[i] = s[i];
 		i++;
 	}
-	free(s);
-	return (i);
+	str[i] = '\0';
+	return (str);
 }

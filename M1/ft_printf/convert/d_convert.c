@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:59:27 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/24 18:55:39 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/25 21:42:21 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ static char	*sign_check(int n, int flags)
 			str[i++] = '+';
 		else if (flags & FLAG_SPC)
 			str[i++] = ' ';
-		str[i] = '\0';
-		return (str);
 	}
-	return (NULL);
+	else
+		str[i++] = '-';
+	str[i] = '\0';
+	return (str);
 }
 
 char	*d_convert(int n, properties fwp)
@@ -46,8 +47,8 @@ char	*d_convert(int n, properties fwp)
 	str = ft_strjoin(pcs_check(fwp.precision, buf_len), buffer);
 	str = ft_strjoin(sign_check(n, fwp.flags), str);
 	if (fwp.flags & FLAG_MNS)
-		str = ft_strjoin(width_check(fwp.flags, fwp.width, str), str);
-	else
 		str = ft_strjoin(str, width_check(fwp.flags, fwp.width, str));
+	else
+		str = ft_strjoin(width_check(fwp.flags, fwp.width, str), str);
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 21:08:09 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/24 18:51:50 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/25 21:39:59 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static void	fill_array(char *str, int n, int i)
 {
-	int	nb;
-
-	nb = n;
 	str[i] = '\0';
 	i -= 1;
 	if (n < 0)
@@ -27,8 +24,6 @@ static void	fill_array(char *str, int n, int i)
 		n = n / 10;
 		i--;
 	}
-	if (nb < 0)
-		str[0] = '-';
 }
 
 static int	count_digit(int nb)
@@ -37,10 +32,7 @@ static int	count_digit(int nb)
 
 	count = 0;
 	if (nb < 0)
-	{
 		nb *= -1;
-		count += 1;
-	}
 	if (nb == 0)
 		return (1);
 	while (nb > 0)
@@ -51,34 +43,13 @@ static int	count_digit(int nb)
 	return (count);
 }
 
-static char	*intmin(void)
-{
-	char	*str;
-	char	*num;
-	int		i;
-
-	str = malloc(12);
-	if (!str)
-		return (NULL);
-	num = "-2147483648";
-	str[0] = '-';
-	i = 1;
-	while (i < 12)
-	{
-		str[i] = num[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
 char	*ft_itoa(int n)
 {
 	char	*str;
 	int		num_len;
 
 	if (n == -2147483648)
-		return (intmin());
+		return (ft_strdup("-2147483648"));
 	num_len = count_digit(n);
 	str = malloc((sizeof(char) * num_len) + 1);
 	if (!str)

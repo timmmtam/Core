@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 15:32:58 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/24 18:49:13 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/25 21:26:19 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdio.h>
 
 # define FLAG_RST 0b00000000
 # define FLAG_MNS 0b00000001
@@ -48,7 +49,8 @@ char	*ft_itoa(int n);
 char	*ft_uinttoa(unsigned int n);
 char	*ft_strjoin(char *str1, char *str2);
 char	*ft_revstr(char	*str);
-void	ft_printstr(char *s);
+char	*ft_strdup(char *s);
+int		ft_printstr(char *s, properties fwp);
 ssize_t	ft_strlen(char *str);
 
 #endif

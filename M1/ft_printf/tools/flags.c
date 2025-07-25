@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 23:46:05 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/24 18:48:32 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/25 19:56:57 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*pcs_check(ssize_t precision, ssize_t buf_len)
 		str = malloc(precision - buf_len + 1);
 		if (!str)
 			return (NULL);
-		while (i < (precision - buf_len + 1))
+		while (i < (precision - buf_len))
 			str[i++] = '0';
 		str[i] = '\0';
 	}
@@ -46,10 +46,10 @@ char	*width_check(int flags, int width, char	*str)
 	{
 		new_str = malloc(width - str_len + 1);
 		if (flags & FLAG_ZRO)
-			while(i < (width - str_len + 1))
+			while(i < (width - str_len))
 				new_str[i++] = '0';
 		else
-			while (i < (width - str_len + 1))
+			while (i < (width - str_len))
 				new_str[i++] = ' ';
 		new_str[i] = '\0';
 	}
@@ -71,7 +71,7 @@ char	*alt_check(int flags)
 		str[i++] = '0';
 		if (flags & FLAG_XXX)
 			str[i++] = 'X';
-else
+		else
 			str[i++] = 'x';
 		str[i] = '\0';
 	}

@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 17:04:34 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/24 18:56:32 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/25 18:34:01 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ char	*x_convert(unsigned int n, properties fwp)
 	char	*str;
 	ssize_t	buf_len;
 
-	if (fwp.flags & FLAG_PCS || fwp.flags & FLAG_MNS)
-		fwp.flags &= ~FLAG_ZRO;
 	buffer = uinttohex(fwp.precision, n, fwp.flags);
 	buf_len = ft_strlen(buffer);
 	str = ft_strjoin(pcs_check(fwp.precision, buf_len), buffer);
@@ -71,9 +69,9 @@ char	*x_convert(unsigned int n, properties fwp)
 	{
 		str = ft_strjoin(alt_check(fwp.flags), str);
 		if (fwp.flags & FLAG_MNS)
-			str = ft_strjoin(width_check(fwp.flags, fwp.width, str), str);
-		else
 			str = ft_strjoin(str, width_check(fwp.flags, fwp.width, str));
+		else
+			str = ft_strjoin(width_check(fwp.flags, fwp.width, str), str);
 	}
 	return (str);
 }

@@ -6,7 +6,7 @@
 #    By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/03 21:35:07 by timtan            #+#    #+#              #
-#    Updated: 2025/07/24 19:34:01 by timtan           ###   ########.fr        #
+#    Updated: 2025/07/25 21:31:12 by timtan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC_FILES = ft_printf.c\
 			ft_printstr.c\
 			ft_revstr.c\
 			ft_strjoin.c\
+			ft_strdup.c\
 			ft_strlen.c\
 			ft_uinttoa.c\
 			main.c\
