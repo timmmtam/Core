@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:01:43 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/25 20:35:18 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/26 19:31:50 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,10 @@ char	*s_convert(char *s, properties fwp)
 {
 	char	*str;
 	ssize_t	str_len;
-	ssize_t	i;
 
 	if (!s)
 		return (NULL);
 	str = NULL;
-	i = 0;
 	str_len = ft_strlen(s);
 	if ((fwp.flags & FLAG_PCS) && str_len > fwp.precision)
 		str_len = fwp.precision;

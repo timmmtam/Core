@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:59:27 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/25 21:42:21 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/26 23:15:32 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ char	*d_convert(int n, properties fwp)
 	char	*buffer;
 	ssize_t	buf_len;
 
-	if (fwp.flags & FLAG_PCS || fwp.flags & FLAG_MNS)
-		fwp.flags &= ~FLAG_ZRO;
-	buffer = ft_itoa(n);
+	if (n == 0 && fwp.precision == 0)
+		buffer = NULL;
+	else
+		buffer = ft_itoa(n);
 	buf_len = ft_strlen(buffer);
-	str = ft_strjoin(pcs_check(fwp.precision, buf_len), buffer);
+	str = ft_strjoin(pcs_check((ssize_t)n, buf_len, fwp), buffer);
 	str = ft_strjoin(sign_check(n, fwp.flags), str);
 	if (fwp.flags & FLAG_MNS)
 		str = ft_strjoin(str, width_check(fwp.flags, fwp.width, str));

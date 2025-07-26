@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 18:53:57 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/25 21:44:39 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/27 02:32:08 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	main(void)
 {
-	char	*s;
+	//char	*s;
 	int		bytes1;
 	int		bytes2;
 
-	s = NULL;
+	//s = NULL;
 	bytes1 = 0;
 	bytes2 = 0;
-	bytes1 += ft_printf("%+10.12dL\n", -328682345);
-	bytes2 += printf("%+10.12dL\n", -328682345);
+	bytes1 += ft_printf("%04dL\n", -14);
+	bytes2 += printf("%04dL\n", -14);
 	printf("myprintf: %d\n", bytes1);
 	printf("oriprintf: %d\n", bytes2);
 	return (1);

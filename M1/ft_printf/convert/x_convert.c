@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 17:04:34 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/25 18:34:01 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/26 23:16:59 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	xhex_converter(unsigned int n, int flags)
 {
-	if (n >= 0 && n <= 9)
+	if (n <= 9)
 		return ('0' + n);
 	else
 	{
@@ -57,9 +57,12 @@ char	*x_convert(unsigned int n, properties fwp)
 	char	*str;
 	ssize_t	buf_len;
 
-	buffer = uinttohex(fwp.precision, n, fwp.flags);
+	if (n == 0 && fwp.precision == 0)
+		buffer = NULL;
+	else
+		buffer = uinttohex(fwp.precision, n, fwp.flags);
 	buf_len = ft_strlen(buffer);
-	str = ft_strjoin(pcs_check(fwp.precision, buf_len), buffer);
+	str = ft_strjoin(pcs_check((ssize_t)n, buf_len, fwp), buffer);
 	if (fwp.flags & FLAG_ZRO)
 	{
 		str = ft_strjoin(width_check(fwp.flags, fwp.width, str), str);

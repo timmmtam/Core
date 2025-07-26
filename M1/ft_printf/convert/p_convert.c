@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 15:35:08 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/25 21:30:31 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/26 19:36:25 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	phex_converter(unsigned long long n, int flags)
 {
-	if (n >= 0 && n <= 9)
+	if (n <= 9)
 		return ('0' + n);
 	else
 	{
@@ -47,14 +47,13 @@ char	*p_convert(void *p, properties fwp)
 	unsigned long long	address;
 	char				*buffer;
 	char				*str;
-	ssize_t				buf_len;
 
 	str = NULL;
 	buffer = malloc(20);
 	if (!buffer || !p)
 		return (ft_strdup("(nil)"));
 	address = (unsigned long long)p;
-	buf_len = ullongtohex(&buffer, address, fwp.flags);
+	ullongtohex(&buffer, address, fwp.flags);
 	if (fwp.flags & FLAG_ZRO)
 	{
 		str = ft_strjoin(width_check(fwp.flags, fwp.width - 2, buffer), buffer);

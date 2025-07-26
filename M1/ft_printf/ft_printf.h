@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 15:32:58 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/25 21:26:19 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/26 23:11:09 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*p_convert(void *p, properties fwp);
 char	*d_convert(int n, properties fwp);
 char	*u_convert(unsigned int n, properties fwp);
 char	*x_convert(unsigned int n, properties fwp);
-char	*pcs_check(ssize_t precision, ssize_t buf_len);
+char	*pcs_check(ssize_t n, ssize_t buf_len, properties fwp);
 char	*width_check(int flags, int width, char *str);
 char	*alt_check(int flags);
 char	*ft_itoa(int n);

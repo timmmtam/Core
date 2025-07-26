@@ -6,25 +6,27 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 23:46:05 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/25 19:56:57 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/26 23:10:26 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*pcs_check(ssize_t precision, ssize_t buf_len)
+char	*pcs_check(ssize_t n, ssize_t buf_len, properties fwp)
 {
 	ssize_t	i;
 	char	*str;
 
+	if (n == 0 && (fwp.flags & FLAG_PCS) && (fwp.precision == 0))
+		return (ft_strdup(""));
 	str = NULL;
 	i = 0;
-	if (precision > buf_len)
+	if (fwp.precision > buf_len)
 	{
-		str = malloc(precision - buf_len + 1);
+		str = malloc(fwp.precision - buf_len + 1);
 		if (!str)
 			return (NULL);
-		while (i < (precision - buf_len))
+		while (i < (fwp.precision - buf_len))
 			str[i++] = '0';
 		str[i] = '\0';
 	}

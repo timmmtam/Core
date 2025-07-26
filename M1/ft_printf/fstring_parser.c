@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 18:52:02 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/25 20:40:41 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/26 23:01:57 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	flag_adder(char **fstring, int flags)
 {
 	while ((!(**fstring >= '1' && **fstring<= '9')) && 
-			(!(**fstring >= 'a' && **fstring <= 'z')))
+			(!(**fstring >= 'a' && **fstring <= 'z')) && **fstring != '%')
 	{
 		if (**fstring == '-')
 			flags |= FLAG_MNS;
@@ -89,10 +89,7 @@ static int	convert(properties fwp, char **fstring, va_list args)
 	else if (**fstring == 'x' || **fstring == 'X')
 		str = x_convert(va_arg(args, unsigned int), fwp);
 	else if (**fstring == '%')
-	{
-		write (1, "%", 1);
-		return (1);
-	}
+		str = ft_strdup("%");
 	else
 		str = NULL;
 	return (ft_printstr(str, fwp));
@@ -106,7 +103,7 @@ int	fstring_parser(char **fstring, va_list args)
 	fwp.precision = 1;
 	fwp.width = 0;
 	fwp.flags = flag_adder(fstring, FLAG_RST);
-	if ((fwp.flags & FLAG_PCS) && **fstring >= '0' && **fstring <= '9')
+	if (fwp.flags & FLAG_PCS)
 		fwp.precision = calc_pcs(fstring);
 	else if (**fstring >= '1' && **fstring <= '9')
 		fwp.width = width_adder(&(fwp.flags), fstring, &(fwp.precision));
