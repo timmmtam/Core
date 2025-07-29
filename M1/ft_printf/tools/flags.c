@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 23:46:05 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 23:10:26 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/29 20:27:54 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,24 @@ char	*width_check(int flags, int width, char	*str)
 
 	i = 0;
 	new_str = NULL;
-	str_len = 0;
-	while (str[str_len])
-		str_len++;
+	str_len = ft_strlen(str);
 	if (width > str_len)
 	{
 		new_str = malloc(width - str_len + 1);
 		if (flags & FLAG_ZRO)
+		{
+			if (flags & FLAG_NEG)
+				new_str[i++] = '-';
 			while(i < (width - str_len))
 				new_str[i++] = '0';
+		}
 		else
+		{
 			while (i < (width - str_len))
 				new_str[i++] = ' ';
+			if (flags & FLAG_NEG)
+				new_str[i - 1] = '-';
+		}
 		new_str[i] = '\0';
 	}
 	return (new_str);

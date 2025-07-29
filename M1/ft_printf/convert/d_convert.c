@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:59:27 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 23:15:32 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/30 00:39:30 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ static char	*sign_check(int n, int flags)
 		else if (flags & FLAG_SPC)
 			str[i++] = ' ';
 	}
-	else
-		str[i++] = '-';
+	if (
 	str[i] = '\0';
 	return (str);
 }
@@ -39,6 +38,7 @@ char	*d_convert(int n, properties fwp)
 	char	*str;
 	char	*buffer;
 	ssize_t	buf_len;
+	int		neg;
 
 	if (n == 0 && fwp.precision == 0)
 		buffer = NULL;

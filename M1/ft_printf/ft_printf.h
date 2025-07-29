@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 15:32:58 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 23:11:09 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/29 20:21:02 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define FLAG_SPC 0b00010000
 # define FLAG_PCS 0b00100000
 # define FLAG_XXX 0b01000000
+# define FLAG_NEG 0b10000000
 
 typedef struct
 {
