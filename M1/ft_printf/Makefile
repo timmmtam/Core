@@ -6,14 +6,14 @@
 #    By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/03 21:35:07 by timtan            #+#    #+#              #
-#    Updated: 2025/07/25 21:31:12 by timtan           ###   ########.fr        #
+#    Updated: 2025/07/31 17:13:11 by timtan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #NAME = libftprintf.a
 NAME = program
 
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -I.
 
 VPATH = convert tools
 

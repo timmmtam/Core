@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 15:32:58 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/29 20:21:02 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/31 22:07:08 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
+# include <stdio.h> //need to edit out
 
 # define FLAG_RST 0b00000000
 # define FLAG_MNS 0b00000001
@@ -30,14 +30,15 @@
 
 typedef struct
 {
-	int	flags;
+	int		flags;
+	int		c;
 	ssize_t	width;
 	ssize_t	precision;
 } properties;
 
 int		ft_printf(const char *, ...);
 int		fstring_parser(char **fstring, va_list args);
-char	*c_convert(char c, properties fwp);
+char	*c_convert(char c, properties *fwp);
 char	*s_convert(char *s, properties fwp);
 char	*p_convert(void *p, properties fwp);
 char	*d_convert(int n, properties fwp);
@@ -45,7 +46,7 @@ char	*u_convert(unsigned int n, properties fwp);
 char	*x_convert(unsigned int n, properties fwp);
 char	*pcs_check(ssize_t n, ssize_t buf_len, properties fwp);
 char	*width_check(int flags, int width, char *str);
-char	*alt_check(int flags);
+char	*alt_check(int flags, unsigned int n);
 char	*ft_itoa(int n);
 char	*ft_uinttoa(unsigned int n);
 char	*ft_strjoin(char *str1, char *str2);

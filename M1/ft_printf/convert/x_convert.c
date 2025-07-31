@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 17:04:34 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 23:16:59 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/31 22:06:47 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ char	*x_convert(unsigned int n, properties fwp)
 	if (fwp.flags & FLAG_ZRO)
 	{
 		str = ft_strjoin(width_check(fwp.flags, fwp.width, str), str);
-		str = ft_strjoin(alt_check(fwp.flags), str);
+		str = ft_strjoin(alt_check(fwp.flags, n), str);
 	}
 	else
 	{
-		str = ft_strjoin(alt_check(fwp.flags), str);
+		str = ft_strjoin(alt_check(fwp.flags, n), str);
 		if (fwp.flags & FLAG_MNS)
 			str = ft_strjoin(str, width_check(fwp.flags, fwp.width, str));
 		else

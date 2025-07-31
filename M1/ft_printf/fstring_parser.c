@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 18:52:02 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 23:01:57 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/31 21:33:23 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	convert(properties fwp, char **fstring, va_list args)
 	if (**fstring == 'X')
 		fwp.flags |= FLAG_XXX;
 	if (**fstring == 'c')
-		str = c_convert(va_arg(args, int), fwp);
+		str = c_convert(va_arg(args, int), &fwp);
 	else if (**fstring == 's')
 		str = s_convert(va_arg(args, char*), fwp);
 	else if (**fstring == 'p')
@@ -102,6 +102,7 @@ int	fstring_parser(char **fstring, va_list args)
 
 	fwp.precision = 1;
 	fwp.width = 0;
+	fwp.c = 0;
 	fwp.flags = flag_adder(fstring, FLAG_RST);
 	if (fwp.flags & FLAG_PCS)
 		fwp.precision = calc_pcs(fstring);

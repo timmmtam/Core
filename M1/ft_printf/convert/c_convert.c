@@ -6,34 +6,37 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 20:59:52 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/24 18:37:08 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/31 21:22:52 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*c_convert(char c, properties fwp)
+static char	*make_str(char c)
 {
 	char	*str;
-	ssize_t	str_len;
-	ssize_t	i;
 
-	i = 0;
-	str_len = 1;
-	if (fwp.width > 1)
-		str_len = fwp.width;
-	str = malloc(str_len + 1);
+	str = malloc(2);
 	if (!str)
 		return (NULL);
-	if (str_len == fwp.width)
+	str[0] = c;
+	str[1] = '\0';
+	return (str);
+}
+
+char	*c_convert(char c, properties *fwp)
+{
+	char	*str;
+
+	if (c == 0)
 	{
-		while (i < str_len)
-			str[i++] = ' ';
-		str[i] = '\0';
+		fwp->width = 2;
+		fwp->c = 1;
 	}
-	if (fwp.flags & FLAG_MNS)
-		str[0] = c;
+	str = make_str(c);
+	if (fwp->flags & FLAG_MNS)
+		str = ft_strjoin(str, width_check(fwp->flags, fwp->width, str));
 	else
-		str[str_len - 1] = c;
+		str = ft_strjoin(width_check(fwp->flags, fwp->width, str), str);
 	return (str);
 }

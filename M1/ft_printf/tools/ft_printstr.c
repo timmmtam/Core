@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 18:55:29 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/25 21:30:49 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/31 21:24:37 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ int	ft_printstr(char *s, properties fwp)
 		i++;
 	}
 	free(s);
+	if (fwp.c == 1)
+		i += 1;
 	return (i);
 }

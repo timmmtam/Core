@@ -6,11 +6,12 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 18:53:57 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/29 20:28:45 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/31 22:10:12 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <limits.h>
 
 int	main(void)
 {
@@ -21,8 +22,8 @@ int	main(void)
 	//s = NULL;
 	bytes1 = 0;
 	bytes2 = 0;
-	bytes1 += ft_printf("%-5dL\n", -14);
-	bytes2 += printf("%-5dL\n", -14);
+	bytes1 += ft_printf("%#XL\n", LONG_MIN);
+	bytes2 += printf("%#XL\n", LONG_MIN);
 	printf("myprintf: %d\n", bytes1);
 	printf("oriprintf: %d\n", bytes2);
 	return (1);
