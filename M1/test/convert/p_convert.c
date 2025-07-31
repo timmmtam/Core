@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 15:35:08 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 19:36:25 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/31 20:22:55 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static ssize_t	ullongtohex(char **buffer, unsigned long long n, int flags)
 	ssize_t	i;
 
 	i = 0;
-	while (n > 15 && i < 9)
+	while (n > 15 && i < 19)
 	{
 		(*buffer)[i] = phex_converter(n % 16, flags);
 		n /= 16;
@@ -42,6 +42,22 @@ static ssize_t	ullongtohex(char **buffer, unsigned long long n, int flags)
 	return (i + 1);
 }
 
+static char	*nullcase(void *p, char *buffer, properties fwp)
+{
+	if (!buffer)
+		buffer = ft_strdup("(nil)");
+	if (!p)
+	{
+		free(buffer);
+		buffer = ft_strdup("(nil)");
+	}
+	if (fwp.flags & FLAG_MNS)
+		buffer = ft_strjoin(buffer, width_check(fwp.flags, fwp.width, buffer));
+	else
+		buffer = ft_strjoin(width_check(fwp.flags, fwp.width, buffer), buffer);
+	return (buffer);
+}
+
 char	*p_convert(void *p, properties fwp)
 {
 	unsigned long long	address;
@@ -51,7 +67,7 @@ char	*p_convert(void *p, properties fwp)
 	str = NULL;
 	buffer = malloc(20);
 	if (!buffer || !p)
-		return (ft_strdup("(nil)"));
+		return (nullcase(p, buffer, fwp));
 	address = (unsigned long long)p;
 	ullongtohex(&buffer, address, fwp.flags);
 	if (fwp.flags & FLAG_ZRO)

@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 15:32:58 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 23:11:09 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/31 20:25:50 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
+# include <stdio.h> //need to edit out
 
 # define FLAG_RST 0b00000000
 # define FLAG_MNS 0b00000001
@@ -26,6 +26,7 @@
 # define FLAG_SPC 0b00010000
 # define FLAG_PCS 0b00100000
 # define FLAG_XXX 0b01000000
+# define FLAG_NEG 0b10000000
 
 typedef struct
 {

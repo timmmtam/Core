@@ -6,13 +6,13 @@
 #    By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/03 21:35:07 by timtan            #+#    #+#              #
-#    Updated: 2025/07/26 23:29:38 by timtan           ###   ########.fr        #
+#    Updated: 2025/07/31 20:27:54 by timtan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -I.
 
 VPATH = convert tools
 
@@ -50,4 +50,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

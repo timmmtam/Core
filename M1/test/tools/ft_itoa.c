@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 21:08:09 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/25 21:39:59 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/27 02:17:43 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_itoa(int n)
 	int		num_len;
 
 	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
+		return (ft_strdup("2147483648"));
 	num_len = count_digit(n);
 	str = malloc((sizeof(char) * num_len) + 1);
 	if (!str)

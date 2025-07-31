@@ -6,13 +6,13 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:59:27 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 23:15:32 by timtan           ###   ########.fr       */
+/*   Updated: 2025/07/30 17:29:09 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*sign_check(int n, int flags)
+static char	*sign_check(int n, char *s, properties fwp)
 {
 	char	*str;
 	ssize_t	i;
@@ -23,12 +23,12 @@ static char	*sign_check(int n, int flags)
 	i = 0;
 	if (n >= 0)
 	{
-		if (flags & FLAG_POS)
+		if (fwp.flags & FLAG_POS)
 			str[i++] = '+';
-		else if (flags & FLAG_SPC)
+		else if (fwp.flags & FLAG_SPC)
 			str[i++] = ' ';
 	}
-	else
+	if (n < 0 && ((!(fwp.flags & FLAG_ZRO)) || fwp.width <= ft_strlen(s)))
 		str[i++] = '-';
 	str[i] = '\0';
 	return (str);
@@ -44,9 +44,11 @@ char	*d_convert(int n, properties fwp)
 		buffer = NULL;
 	else
 		buffer = ft_itoa(n);
+	if (n < 0)
+		fwp.flags |= FLAG_NEG;
 	buf_len = ft_strlen(buffer);
 	str = ft_strjoin(pcs_check((ssize_t)n, buf_len, fwp), buffer);
-	str = ft_strjoin(sign_check(n, fwp.flags), str);
+	str = ft_strjoin(sign_check(n, str, fwp), str);
 	if (fwp.flags & FLAG_MNS)
 		str = ft_strjoin(str, width_check(fwp.flags, fwp.width, str));
 	else
