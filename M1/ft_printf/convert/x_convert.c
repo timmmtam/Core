@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 17:04:34 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/31 22:06:47 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/01 20:34:45 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ static char	*uinttohex(ssize_t precision, unsigned int n, int flags)
 	if (!buffer)
 		return (NULL);
 	if (flags & FLAG_PCS)
+	{
 		if (precision == 0 && n == 0)
 		{
 			buffer[0] = '\0';
 			return (buffer);
 		}
+	}
 	i = 0;
 	while (n > 15 && i < 9)
 	{
@@ -51,7 +53,7 @@ static char	*uinttohex(ssize_t precision, unsigned int n, int flags)
 	return (ft_revstr(buffer));
 }
 
-char	*x_convert(unsigned int n, properties fwp)
+char	*x_convert(unsigned int n, t_properties fwp)
 {
 	char	*buffer;
 	char	*str;

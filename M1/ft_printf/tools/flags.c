@@ -6,13 +6,13 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 23:46:05 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/31 22:06:12 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/01 20:35:36 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*pcs_check(ssize_t n, ssize_t buf_len, properties fwp)
+char	*pcs_check(ssize_t n, ssize_t buf_len, t_properties fwp)
 {
 	ssize_t	i;
 	char	*str;
@@ -49,7 +49,7 @@ char	*width_check(int flags, int width, char	*str)
 		{
 			if (flags & FLAG_NEG)
 				new_str[i++] = '-';
-			while(i < (width - str_len))
+			while (i < (width - str_len))
 				new_str[i++] = '0';
 		}
 		else

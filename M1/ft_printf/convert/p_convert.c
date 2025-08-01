@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 15:35:08 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/31 22:05:14 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/01 20:33:29 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static ssize_t	ullongtohex(char **buffer, unsigned long long n, int flags)
 	return (i + 1);
 }
 
-static char	*nullcase(void *p, char *buffer, properties fwp)
+static char	*nullcase(void *p, char *buffer, t_properties fwp)
 {
 	if (!buffer)
 		buffer = ft_strdup("(nil)");
@@ -58,7 +58,7 @@ static char	*nullcase(void *p, char *buffer, properties fwp)
 	return (buffer);
 }
 
-char	*p_convert(void *p, properties fwp)
+char	*p_convert(void *p, t_properties fwp)
 {
 	unsigned long long	address;
 	char				*buffer;

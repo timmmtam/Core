@@ -6,37 +6,42 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 20:59:52 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/31 21:22:52 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/01 20:31:38 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*make_str(char c)
+static int	print_str(char *s)
 {
-	char	*str;
+	int	i;
 
-	str = malloc(2);
-	if (!str)
-		return (NULL);
-	str[0] = c;
-	str[1] = '\0';
-	return (str);
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	free(s);
+	return (i);
 }
 
-char	*c_convert(char c, properties *fwp)
+int	c_convert(char c, t_properties fwp)
 {
-	char	*str;
+	int	bytes;
 
-	if (c == 0)
+	bytes = 0;
+	if (fwp.flags & FLAG_MNS)
 	{
-		fwp->width = 2;
-		fwp->c = 1;
+		bytes += (int)write (1, &c, 1);
+		bytes += print_str(width_check(fwp.flags, fwp.width, "c"));
 	}
-	str = make_str(c);
-	if (fwp->flags & FLAG_MNS)
-		str = ft_strjoin(str, width_check(fwp->flags, fwp->width, str));
 	else
-		str = ft_strjoin(width_check(fwp->flags, fwp->width, str), str);
-	return (str);
+	{
+		bytes += print_str(width_check(fwp.flags, fwp.width, "c"));
+		bytes += (int)write (1, &c, 1);
+	}
+	return (bytes);
 }

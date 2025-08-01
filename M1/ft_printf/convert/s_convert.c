@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:01:43 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 19:31:50 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/01 20:36:28 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*s_default(char *s, char *str, ssize_t str_len)
 	return (str);
 }
 
-char	*s_convert(char *s, properties fwp)
+char	*s_convert(char *s, t_properties fwp)
 {
 	char	*str;
 	ssize_t	str_len;

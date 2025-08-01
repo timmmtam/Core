@@ -6,7 +6,7 @@
 #    By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/03 21:35:07 by timtan            #+#    #+#              #
-#    Updated: 2025/07/31 17:13:11 by timtan           ###   ########.fr        #
+#    Updated: 2025/08/01 20:14:11 by timtan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ OBJ_FILES = $(SRC_FILES:.c=.o)
 all: $(OBJ_FILES)
 	cc $(CFLAGS) $(OBJ_FILES) -o $(NAME)
 
+#bonus: $(NAME)
+
 #$(NAME): $(OBJ_FILES)
 #	ar rcs $(NAME) $(OBJ_FILES)
 
@@ -51,4 +53,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

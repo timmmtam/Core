@@ -6,13 +6,13 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 18:55:29 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/31 21:24:37 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/01 20:35:53 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	nullcase(properties fwp)
+static int	nullcase(t_properties fwp)
 {
 	if (fwp.flags & FLAG_PCS)
 	{
@@ -31,7 +31,7 @@ static int	nullcase(properties fwp)
 	}
 }
 
-int	ft_printstr(char *s, properties fwp)
+int	ft_printstr(char *s, t_properties fwp)
 {
 	int	i;
 
@@ -44,7 +44,5 @@ int	ft_printstr(char *s, properties fwp)
 		i++;
 	}
 	free(s);
-	if (fwp.c == 1)
-		i += 1;
 	return (i);
 }

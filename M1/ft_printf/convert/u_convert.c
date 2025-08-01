@@ -6,13 +6,13 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 16:04:44 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 23:16:13 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/01 20:34:21 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*u_convert(unsigned int n, properties fwp)
+char	*u_convert(unsigned int n, t_properties fwp)
 {
 	char	*str;
 	char	*buffer;

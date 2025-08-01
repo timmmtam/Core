@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 15:32:14 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/25 19:46:52 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/01 20:24:05 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			bytes += fstring_parser((char**)&format, args);
+			bytes += fstring_parser((char **)&format, args);
 		}
 		else
 		{
