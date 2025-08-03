@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 18:52:02 by timtan            #+#    #+#             */
-/*   Updated: 2025/08/01 20:38:23 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/03 17:07:36 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,13 @@ static int	convert(t_properties fwp, char **fstring, va_list args)
 		str = ft_strdup("%");
 	else
 		str = NULL;
-	return (ft_printstr(str, fwp));
+	return (ft_printstr(str));
 }
 
 int	fstring_parser(char **fstring, va_list args)
 {
 	t_properties	fwp;
-	int			bytes;
+	int				bytes;
 
 	fwp.precision = 1;
 	fwp.width = 0;

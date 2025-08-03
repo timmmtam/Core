@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 15:32:58 by timtan            #+#    #+#             */
-/*   Updated: 2025/08/01 20:31:08 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/03 17:07:22 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*ft_uinttoa(unsigned int n);
 char	*ft_strjoin(char *str1, char *str2);
 char	*ft_revstr(char	*str);
 char	*ft_strdup(char *s);
-int		ft_printstr(char *s, t_properties fwp);
+int		ft_printstr(char *s);
 ssize_t	ft_strlen(char *str);
 
 #endif
