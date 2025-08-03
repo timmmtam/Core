@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:33:49 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/01 18:17:33 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/03 19:29:10 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <unistd.h>
 
-void	buffer_reset(char *buffer)
+static void	buffer_reset(char *buffer)
 {
 	size_t	i;
 
@@ -26,6 +25,20 @@ void	buffer_reset(char *buffer)
 	return ;
 }
 
+static char	*flush_stash(char **stash)
+{
+	ssize_t	i;
+
+	i = 0;
+	while (i < FD_SIZE)
+	{
+		if (stash[i])
+			free (stash[i]);
+		i++;
+	}
+	return (NULL);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*stash[FD_SIZE];
@@ -33,7 +46,9 @@ char	*get_next_line(int fd)
 	char		buffer[BUFFER_SIZE];
 	char		*str_to_return;
 
-	if (fd < 0 || fd >= FD_SIZE || BUFFER_SIZE <= 0)
+	if (fd < 0)
+		return (flush_stash(stash));
+	if (fd >= FD_SIZE || BUFFER_SIZE <= 0)
 		return (NULL);
 	while (!has_newline(&stash[fd]))
 	{

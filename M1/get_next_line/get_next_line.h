@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:55:39 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/01 18:47:21 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/03 19:28:00 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@
 
 char	*get_next_line(int fd);
 int		has_newline(char **str);
-char	*my_strcpy(char *s1, size_t start);
 char	*take_from_stash(char **stash, int fd);
 char	*ft_strjoin(char *stash, char *buffer, size_t buffer_len);
-void	buffer_reset(char *buffer);
-size_t	newline_or_null(char **stash, int fd);
 
 #endif

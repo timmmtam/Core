@@ -1,16 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:57:23 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/01 18:11:47 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/03 19:30:15 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static size_t	newline_or_null(char **stash, int fd)
+{
+	size_t	len;
+
+	len = 0;
+	while (stash[fd][len] != '\0')
+	{
+		if (stash[fd][len] == '\n')
+		{
+			len++;
+			break ;
+		}
+		len++;
+	}
+	return (len);
+}
+
+static char	*my_strcpy(char *s1, size_t start)
+{
+	char	*str;
+	size_t	len;
+	size_t	i;
+
+	len = 0;
+	while (s1[start + len] != '\0')
+		len++;
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len)
+		str[i++] = s1[start++];
+	str[i] = '\0';
+	return (str);
+}
 
 int	has_newline(char **str)
 {
@@ -32,25 +68,6 @@ int	has_newline(char **str)
 		i++;
 	}
 	return (0);
-}
-
-char	*my_strcpy(char *s1, size_t start)
-{
-	char	*str;
-	size_t	len;
-	size_t	i;
-
-	len = 0;
-	while (s1[start + len] != '\0')
-		len++;
-	str = malloc(len + 1);
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (i < len)
-		str[i++] = s1[start++];
-	str[i] = '\0';
-	return (str);
 }
 
 char	*take_from_stash(char **stash, int fd)
@@ -102,21 +119,4 @@ char	*ft_strjoin(char *stash, char *buffer, size_t buffer_len)
 		str_new[stash_len++] = buffer[i++];
 	str_new[stash_len] = '\0';
 	return (free (stash), str_new);
-}
-
-size_t	newline_or_null(char **stash, int fd)
-{
-	size_t	len;
-
-	len = 0;
-	while (stash[fd][len] != '\0')
-	{
-		if (stash[fd][len] == '\n')
-		{
-			len++;
-			break ;
-		}
-		len++;
-	}
-	return (len);
 }
