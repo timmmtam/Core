@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 18:52:02 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 23:01:57 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/03 17:07:36 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	flag_adder(char **fstring, int flags)
 {
-	while ((!(**fstring >= '1' && **fstring<= '9')) && 
-			(!(**fstring >= 'a' && **fstring <= 'z')) && **fstring != '%')
+	while ((!(**fstring >= '1' && **fstring <= '9')) && **fstring != 'X'
+		&& (!(**fstring >= 'a' && **fstring <= 'z')) && **fstring != '%')
 	{
 		if (**fstring == '-')
 			flags |= FLAG_MNS;
@@ -70,18 +70,18 @@ static ssize_t	width_adder(int *flags, char **fstring, ssize_t *precision)
 	return (width);
 }
 
-static int	convert(properties fwp, char **fstring, va_list args)
+static int	convert(t_properties fwp, char **fstring, va_list args)
 {
 	char	*str;
 
 	if (**fstring == 'X')
 		fwp.flags |= FLAG_XXX;
 	if (**fstring == 'c')
-		str = c_convert(va_arg(args, int), fwp);
+		return (c_convert(va_arg(args, int), fwp));
 	else if (**fstring == 's')
-		str = s_convert(va_arg(args, char*), fwp);
+		str = s_convert(va_arg(args, char *), fwp);
 	else if (**fstring == 'p')
-		str = p_convert(va_arg(args, void*), fwp);
+		str = p_convert(va_arg(args, void *), fwp);
 	else if (**fstring == 'd' || **fstring == 'i')
 		str = d_convert(va_arg(args, int), fwp);
 	else if (**fstring == 'u')
@@ -92,16 +92,17 @@ static int	convert(properties fwp, char **fstring, va_list args)
 		str = ft_strdup("%");
 	else
 		str = NULL;
-	return (ft_printstr(str, fwp));
+	return (ft_printstr(str));
 }
 
 int	fstring_parser(char **fstring, va_list args)
 {
-	properties	fwp;
-	int			bytes;
+	t_properties	fwp;
+	int				bytes;
 
 	fwp.precision = 1;
 	fwp.width = 0;
+	fwp.c = 0;
 	fwp.flags = flag_adder(fstring, FLAG_RST);
 	if (fwp.flags & FLAG_PCS)
 		fwp.precision = calc_pcs(fstring);

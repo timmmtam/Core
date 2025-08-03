@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 15:35:08 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/31 20:22:55 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/01 20:33:29 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static ssize_t	ullongtohex(char **buffer, unsigned long long n, int flags)
 	return (i + 1);
 }
 
-static char	*nullcase(void *p, char *buffer, properties fwp)
+static char	*nullcase(void *p, char *buffer, t_properties fwp)
 {
 	if (!buffer)
 		buffer = ft_strdup("(nil)");
@@ -58,7 +58,7 @@ static char	*nullcase(void *p, char *buffer, properties fwp)
 	return (buffer);
 }
 
-char	*p_convert(void *p, properties fwp)
+char	*p_convert(void *p, t_properties fwp)
 {
 	unsigned long long	address;
 	char				*buffer;
@@ -73,11 +73,11 @@ char	*p_convert(void *p, properties fwp)
 	if (fwp.flags & FLAG_ZRO)
 	{
 		str = ft_strjoin(width_check(fwp.flags, fwp.width - 2, buffer), buffer);
-		str = ft_strjoin(alt_check(FLAG_ALT), str);
+		str = ft_strjoin(alt_check(FLAG_ALT, 1), str);
 	}
 	else
 	{
-		str = ft_strjoin(alt_check(FLAG_ALT), buffer);
+		str = ft_strjoin(alt_check(FLAG_ALT, 1), buffer);
 		if (fwp.flags & FLAG_MNS)
 			str = ft_strjoin(str, width_check(fwp.flags, fwp.width, str));
 		else

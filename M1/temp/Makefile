@@ -6,11 +6,12 @@
 #    By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/03 21:35:07 by timtan            #+#    #+#              #
-#    Updated: 2025/07/31 20:27:54 by timtan           ###   ########.fr        #
+#    Updated: 2025/08/01 20:14:11 by timtan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+#NAME = libftprintf.a
+NAME = program
 
 CFLAGS = -Wall -Wextra -I.
 
@@ -32,15 +33,17 @@ SRC_FILES = ft_printf.c\
 			ft_strdup.c\
 			ft_strlen.c\
 			ft_uinttoa.c\
+			main.c\
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
-all: $(NAME)
+all: $(OBJ_FILES)
+	cc $(CFLAGS) $(OBJ_FILES) -o $(NAME)
 
-bonus: $(NAME)
+#bonus: $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	ar rcs $(NAME) $(OBJ_FILES)
+#$(NAME): $(OBJ_FILES)
+#	ar rcs $(NAME) $(OBJ_FILES)
 
 clean:
 	rm -f $(OBJ_FILES)
@@ -50,4 +53,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

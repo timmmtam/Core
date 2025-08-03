@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   u_convert.c                                        :+:      :+:    :+:   */
+/*   s_convert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 16:04:44 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 23:16:13 by timtan           ###   ########.fr       */
+/*   Created: 2025/07/10 22:01:43 by timtan            #+#    #+#             */
+/*   Updated: 2025/08/03 17:08:03 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*u_convert(unsigned int n, properties fwp)
+char	*s_convert(char *s, t_properties fwp)
 {
 	char	*str;
-	char	*buffer;
-	ssize_t	buf_len;
+	ssize_t	str_len;
 
-	if (n == 0 && fwp.precision == 0)
-		buffer = NULL;
+	if (!s)
+	{
+		if (fwp.flags & FLAG_PCS)
+		{
+			if (fwp.precision > 5)
+				str = ft_strdup("(null)");
+			else
+				str = NULL;
+		}
+		else
+			str = ft_strdup("(null)");
+	}
 	else
-		buffer = ft_uinttoa(n);
-	buf_len = ft_strlen(buffer);
-	str = ft_strjoin(pcs_check((ssize_t)n, buf_len, fwp), buffer);
+		str = ft_strdup(s);
+	str_len = ft_strlen(str);
+	if ((fwp.flags & FLAG_PCS) && str_len > fwp.precision)
+		str[fwp.precision] = '\0';
 	if (fwp.flags & FLAG_MNS)
 		str = ft_strjoin(str, width_check(fwp.flags, fwp.width, str));
 	else
