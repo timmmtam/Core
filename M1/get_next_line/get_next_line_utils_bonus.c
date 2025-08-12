@@ -6,117 +6,89 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:57:23 by timtan            #+#    #+#             */
-/*   Updated: 2025/08/03 19:30:15 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/12 20:53:09 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-static size_t	newline_or_null(char **stash, int fd)
-{
-	size_t	len;
-
-	len = 0;
-	while (stash[fd][len] != '\0')
-	{
-		if (stash[fd][len] == '\n')
-		{
-			len++;
-			break ;
-		}
-		len++;
-	}
-	return (len);
-}
-
-static char	*my_strcpy(char *s1, size_t start)
+char	*copy_stash(char *stash)
 {
 	char	*str;
-	size_t	len;
-	size_t	i;
+	int		i;
 
-	len = 0;
-	while (s1[start + len] != '\0')
-		len++;
-	str = malloc(len + 1);
+	str = malloc(BUFFER_SIZE);
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (i < len)
-		str[i++] = s1[start++];
-	str[i] = '\0';
+	while (i < BUFFER_SIZE)
+	{
+		str[i] = stash[i];
+		i++;
+	}
 	return (str);
 }
 
-int	has_newline(char **str)
+int	has_newline(char *str)
 {
 	ssize_t	i;
 
-	if (!*str)
-	{
-		*str = malloc(1);
-		if (!*str)
-			return (-1);
-		*str[0] = '\0';
-		return (0);
-	}
 	i = 0;
-	while ((*str)[i] != '\0')
+	while (str[i] != '\0')
 	{
-		if ((*str)[i] == '\n')
+		if (str[i] == '\n')
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-char	*take_from_stash(char **stash, int fd)
+char	*extract_str(char *s, char *stash)
 {
-	size_t	len;
-	size_t	i;
-	char	*temp_stash;
 	char	*str;
+	ssize_t	i;
+	ssize_t	str_len;
 
-	if (!stash[fd])
-		return (NULL);
-	len = newline_or_null(stash, fd);
-	str = malloc(len + 1);
+	i = -1;
+	str_len = 0;
+	while (s[str_len] != '\0' && s[str_len] != '\n')
+		str_len++;
+	if (has_newline(s))
+		str_len += 1;
+	str = malloc(str_len + 1);
 	if (!str)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		str[i] = stash[fd][i];
-		i++;
-	}
+		return (free(s), NULL);
+	while (i++ < str_len - 1)
+		str[i] = s[i];
 	str[i] = '\0';
-	temp_stash = my_strcpy(stash[fd], len);
-	free(stash[fd]);
-	stash[fd] = temp_stash;
-	return (str);
+	i = 0;
+	while (s[str_len] != '\0')
+		stash[i++] = s[str_len++];
+	stash[i] = '\0';
+	return (free(s), str);
 }
 
-char	*ft_strjoin(char *stash, char *buffer, size_t buffer_len)
+char	*ft_strjoin(char *str, char *buffer, size_t buffer_len)
 {
-	size_t	stash_len;
+	size_t	str_len;
 	size_t	i;
 	char	*str_new;
 
-	stash_len = 0;
-	while (stash[stash_len])
-		stash_len++;
-	str_new = malloc(stash_len + buffer_len + 1);
+	str_len = 0;
+	while (str[str_len])
+		str_len++;
+	str_new = malloc(str_len + buffer_len + 1);
 	if (!str_new)
-		return (free (stash), NULL);
+		return (free(str), NULL);
 	i = 0;
-	while (i < stash_len)
+	while (i < str_len)
 	{
-		str_new[i] = stash[i];
+		str_new[i] = str[i];
 		i++;
 	}
 	i = 0;
 	while (i < buffer_len)
-		str_new[stash_len++] = buffer[i++];
-	str_new[stash_len] = '\0';
-	return (free (stash), str_new);
+		str_new[str_len++] = buffer[i++];
+	str_new[str_len] = '\0';
+	return (free(str), str_new);
 }

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:55:39 by timtan            #+#    #+#             */
-/*   Updated: 2025/08/03 19:30:44 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/12 20:30:33 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -25,8 +25,9 @@
 # endif
 
 char	*get_next_line(int fd);
-int		has_newline(char **str);
-char	*take_from_stash(char **stash, int fd);
-char	*ft_strjoin(char *stash, char *buffer, size_t buffer_len);
+int		has_newline(char *str);
+char	*extract_str(char *s, char *stash);
+char	*ft_strjoin(char *str, char *buffer, size_t buffer_len);
+char	*copy_stash(char *stash);
 
 #endif

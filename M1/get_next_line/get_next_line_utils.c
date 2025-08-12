@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:57:23 by timtan            #+#    #+#             */
-/*   Updated: 2025/08/11 21:30:42 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/12 20:44:20 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	has_newline(char *str)
 	return (0);
 }
 
-char	*extract_str(char *s, char stash[][BUFFER_SIZE], int fd)
+char	*extract_str(char *s, char *stash)
 {
 	char	*str;
 	ssize_t	i;
@@ -62,12 +62,12 @@ char	*extract_str(char *s, char stash[][BUFFER_SIZE], int fd)
 		str[i] = s[i];
 	str[i] = '\0';
 	i = 0;
-	while (str_len < BUFFER_SIZE)
-		stash[fd][i++] = s[str_len++];
-	stash[fd][i] = '\0';
+	while (s[str_len] != '\0')
+		stash[i++] = s[str_len++];
+	stash[i] = '\0';
 	return (free(s), str);
 }
-	
+
 char	*ft_strjoin(char *str, char *buffer, size_t buffer_len)
 {
 	size_t	str_len;

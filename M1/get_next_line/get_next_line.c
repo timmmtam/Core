@@ -6,21 +6,11 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:33:49 by timtan            #+#    #+#             */
-/*   Updated: 2025/08/11 21:36:58 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/12 20:42:37 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static void	buf_reset(char *buffer)
-{
-	int	i;
-
-	i = 0;
-	while (i < BUFFER_SIZE)
-		buffer[i++] = 0;
-	return ;
-}
 
 char	*get_next_line(int fd)
 {
@@ -39,9 +29,8 @@ char	*get_next_line(int fd)
 		str = ft_strjoin(str, stash[fd], read_bytes);
 		if (!str)
 			return (NULL);
-		buf_reset(stash[fd]);
 	}
-	str = extract_str(str, stash, fd);
+	str = extract_str(str, stash[fd]);
 	if (str[0] == '\0')
 		return (free(str), NULL);
 	return (str);

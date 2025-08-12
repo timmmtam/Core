@@ -6,62 +6,32 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:33:49 by timtan            #+#    #+#             */
-/*   Updated: 2025/08/03 19:29:10 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/12 20:52:58 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-static void	buffer_reset(char *buffer)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < BUFFER_SIZE)
-	{
-		buffer[i] = '\0';
-		i++;
-	}
-	return ;
-}
-
-static char	*flush_stash(char **stash)
-{
-	ssize_t	i;
-
-	i = 0;
-	while (i < FD_SIZE)
-	{
-		if (stash[i])
-			free (stash[i]);
-		i++;
-	}
-	return (NULL);
-}
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*stash[FD_SIZE];
+	static char	stash[FD_SIZE][BUFFER_SIZE];
 	ssize_t		read_bytes;
-	char		buffer[BUFFER_SIZE];
-	char		*str_to_return;
+	char		*str;
 
-	if (fd < 0)
-		return (flush_stash(stash));
 	if (fd >= FD_SIZE || BUFFER_SIZE <= 0)
 		return (NULL);
-	while (!has_newline(&stash[fd]))
+	str = copy_stash(stash[fd]);
+	while (!has_newline(str))
 	{
-		read_bytes = read(fd, buffer, BUFFER_SIZE);
+		read_bytes = read(fd, stash[fd], BUFFER_SIZE);
 		if (read_bytes <= 0)
 			break ;
-		stash[fd] = ft_strjoin(stash[fd], buffer, read_bytes);
-		if (!stash[fd])
+		str = ft_strjoin(str, stash[fd], read_bytes);
+		if (!str)
 			return (NULL);
-		buffer_reset(buffer);
 	}
-	str_to_return = take_from_stash(stash, fd);
-	if (str_to_return[0] == '\0')
-		return (free (str_to_return), NULL);
-	return (str_to_return);
+	str = extract_str(str, stash[fd]);
+	if (str[0] == '\0')
+		return (free(str), NULL);
+	return (str);
 }
