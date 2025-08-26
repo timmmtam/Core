@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 18:52:02 by timtan            #+#    #+#             */
-/*   Updated: 2025/08/03 17:07:36 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/26 15:48:56 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	flag_adder(char **fstring, int flags)
 		{
 			flags |= FLAG_PCS;
 			(*fstring)++;
-			return (flags);
+			break ;
 		}
 		(*fstring)++;
 	}

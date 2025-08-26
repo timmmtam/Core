@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   c_convert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 15:32:14 by timtan            #+#    #+#             */
-/*   Updated: 2025/08/01 20:24:05 by timtan           ###   ########.fr       */
+/*   Created: 2025/07/10 20:59:52 by timtan            #+#    #+#             */
+/*   Updated: 2025/08/26 17:34:50 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	c_convert(char c, t_properties fwp)
 {
-	va_list	args;
-	int		bytes;
+	int	bytes;
 
-	va_start(args, format);
 	bytes = 0;
-	while (*format)
+	if (fwp.flags & FLAG_MNS)
 	{
-		if (*format == '%')
-		{
-			format++;
-			bytes += fstring_parser((char **)&format, args);
-		}
-		else
-		{
-			write(1, format, 1);
-			bytes++;
-		}
-		format++;
+		bytes += (int)write (1, &c, 1);
+		bytes += ft_printstr(width_check(fwp.flags, fwp.width, "c"));
 	}
-	va_end(args);
+	else
+	{
+		bytes += ft_printstr(width_check(fwp.flags, fwp.width, "c"));
+		bytes += (int)write (1, &c, 1);
+	}
 	return (bytes);
 }

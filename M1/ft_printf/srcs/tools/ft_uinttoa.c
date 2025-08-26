@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 21:08:09 by timtan            #+#    #+#             */
-/*   Updated: 2025/07/26 19:38:14 by timtan           ###   ########.fr       */
+/*   Updated: 2025/08/26 19:01:02 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_uinttoa(unsigned int n)
 	int		num_len;
 
 	num_len = count_digit(n);
-	str = malloc((sizeof(char) * num_len) + 1);
+	str = malloc(num_len + 1);
 	if (!str)
 		return (NULL);
 	fill_array(str, n, num_len);

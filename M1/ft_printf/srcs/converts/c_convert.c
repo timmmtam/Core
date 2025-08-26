@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   c_convert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 18:53:57 by timtan            #+#    #+#             */
-/*   Updated: 2025/08/03 17:39:19 by timtan           ###   ########.fr       */
+/*   Created: 2025/07/10 20:59:52 by timtan            #+#    #+#             */
+/*   Updated: 2025/08/26 17:34:50 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
 
-int	main(void)
+int	c_convert(char c, t_properties fwp)
 {
-	int		bytes1;
-	int		bytes2;
+	int	bytes;
 
-	bytes1 = 0;
-	bytes2 = 0;
-	bytes1 += ft_printf("%+.dL\n", 5);
-	bytes2 += printf("%+.dL\n", 5);
-	printf("myprintf: %d\n", bytes1);
-	printf("oriprintf: %d\n", bytes2);
-	return (1);
+	bytes = 0;
+	if (fwp.flags & FLAG_MNS)
+	{
+		bytes += (int)write (1, &c, 1);
+		bytes += ft_printstr(width_check(fwp.flags, fwp.width, "c"));
+	}
+	else
+	{
+		bytes += ft_printstr(width_check(fwp.flags, fwp.width, "c"));
+		bytes += (int)write (1, &c, 1);
+	}
+	return (bytes);
 }
