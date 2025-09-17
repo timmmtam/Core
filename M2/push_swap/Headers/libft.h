@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:28:10 by timtan            #+#    #+#             */
-/*   Updated: 2025/09/13 18:27:28 by timtan           ###   ########.fr       */
+/*   Updated: 2025/09/15 18:32:24 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <stdlib.h>
+# include <stdarg.h>
 # include <stdint.h>
 # include <unistd.h>
 
