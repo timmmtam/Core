@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 18:35:07 by timtan            #+#    #+#             */
-/*   Updated: 2025/09/17 21:48:13 by timtan           ###   ########.fr       */
+/*   Updated: 2025/09/18 20:09:33 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,14 @@ static int	calculate_index(t_cdlist **lst, int n, int end)
 int	main (int argc, char **argv)
 {
 	t_cdlist	*stack_a;
+	t_cdlist	*stack_b;
 	int			i;
 
 	if (argc == 1)
 		return (0);
 	stack_a = ft_cdlstnew(ft_atoi(argv[1]), 0, 0);
 	//add integrity check here
+	stack_b = NULL;
 	i = 2;
 	while (i < argc)
 	{
@@ -67,17 +69,12 @@ int	main (int argc, char **argv)
 	}
 	ft_cdlstprint(stack_a);
 	ft_printf("\n");
-	swap(&stack_a);
+	ft_cdlstprint(stack_b);
+	push(&stack_a, &stack_b);
 	ft_cdlstprint(stack_a);
 	ft_printf("\n");
-	swap(&stack_a);
-	ft_cdlstprint(stack_a);
-	ft_printf("\n");
-	rotate(&stack_a);
-	ft_cdlstprint(stack_a);
-	ft_printf("\n");
-	r_rotate(&stack_a);
-	ft_cdlstprint(stack_a);
+	ft_cdlstprint(stack_b);
 	ft_cdlstclear(&stack_a);
+	ft_cdlstclear(&stack_b);
 	return (0);
 }

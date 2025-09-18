@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 18:46:24 by timtan            #+#    #+#             */
-/*   Updated: 2025/09/16 19:32:13 by timtan           ###   ########.fr       */
+/*   Updated: 2025/09/18 17:28:25 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_cdlstadd(t_cdlist **lst, t_cdlist *new, int front)
 {
-	t_cdlist *last;
+	t_cdlist	*last;
 
 	if (!new || !lst)
 		return (1);

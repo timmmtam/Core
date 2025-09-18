@@ -6,7 +6,7 @@
 #    By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/13 18:30:48 by timtan            #+#    #+#              #
-#    Updated: 2025/09/17 21:09:13 by timtan           ###   ########.fr        #
+#    Updated: 2025/09/18 19:23:05 by timtan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ OBJDIR = objs
 VPATH = srcs:srcs/operations:srcs/tools
 
 SRCS =	push_swap.c	ft_cdlstnew.c	ft_cdlstadd.c	ft_cdlstclear.c \
-		swap.c		ft_cdlstprint.c	rotate.c
+		swap.c		ft_cdlstprint.c	rotate.c		ft_cdlstprintone.c \
+		push.c
 
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
