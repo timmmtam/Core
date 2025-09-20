@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 18:35:07 by timtan            #+#    #+#             */
-/*   Updated: 2025/09/18 20:09:33 by timtan           ###   ########.fr       */
+/*   Updated: 2025/09/20 19:51:08 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static int	exit_program(int error, t_cdlist **lst)
 		write(2, "Error\n", 6);
 		n = 1;
 	}
-	ft_cdlstclear(lst);
+	if (lst)
+		ft_cdlstclear(lst);
 	return (n);
 }
 
@@ -47,6 +48,27 @@ static int	calculate_index(t_cdlist **lst, int n, int end)
 	return (index);
 }
 
+int	integrity_check(int ac, char **av)
+{
+	int	i;
+	int	j;
+
+	j = 1;
+	while (j < ac)
+	{
+		i = 0;
+		while (av[j][i] != '\0')
+		{
+			if (!(av[j][i] >= '0' && av[j][i] <= '9') && !(av[j][i] == '-')
+					&& !(av[j][i] == '+'))
+				return (1);
+			i++;
+		}
+		j++;
+	}
+	return (0);
+}
+
 int	main (int argc, char **argv)
 {
 	t_cdlist	*stack_a;
@@ -55,26 +77,19 @@ int	main (int argc, char **argv)
 
 	if (argc == 1)
 		return (0);
-	stack_a = ft_cdlstnew(ft_atoi(argv[1]), 0, 0);
-	//add integrity check here
+	if (integrity_check(argc, argv))
+		return (exit_program(1, NULL));
+	//init_stacks();
+	stack_a = NULL;
 	stack_b = NULL;
-	i = 2;
+	i = 1;
 	while (i < argc)
 	{
-		if (ft_cdlstadd(&stack_a, ft_cdlstnew(ft_atoi(argv[i]), i - 1,
-						calculate_index(&stack_a, ft_atoi(argv[i]), i)), 0))
+		if (ft_cdlstadd(&stack_a, ft_cdlstnew(ft_atol(argv[i]), i - 1,
+						calculate_index(&stack_a, ft_atol(argv[i]), i)), 0))
 			return (exit_program(1, &stack_a));
-		//add duplicate number check here
 		i++;
 	}
 	ft_cdlstprint(stack_a);
-	ft_printf("\n");
-	ft_cdlstprint(stack_b);
-	push(&stack_a, &stack_b);
-	ft_cdlstprint(stack_a);
-	ft_printf("\n");
-	ft_cdlstprint(stack_b);
-	ft_cdlstclear(&stack_a);
-	ft_cdlstclear(&stack_b);
 	return (0);
 }

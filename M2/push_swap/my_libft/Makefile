@@ -6,7 +6,7 @@
 #    By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 13:27:40 by timtan            #+#    #+#              #
-#    Updated: 2025/09/13 18:12:49 by timtan           ###   ########.fr        #
+#    Updated: 2025/09/20 19:32:44 by timtan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ LFTSRC =	ft_isalpha.c	ft_isdigit.c	ft_isalnum.c \
 			ft_putnbr_fd.c	ft_lstnew.c		ft_lstadd_front.c \
 			ft_lstsize.c	ft_lstlast.c	ft_lstadd_back.c \
 			ft_lstdelone.c	ft_lstclear.c	ft_lstiter.c \
-			ft_lstmap.c
+			ft_lstmap.c		ft_atol.c
 
 LFTOBJ = $(addprefix $(OBJDIR)/, $(LFTSRC:.c=.o))
 #------------------------------------------------------------------------------#

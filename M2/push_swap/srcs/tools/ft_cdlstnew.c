@@ -6,13 +6,13 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 18:40:04 by timtan            #+#    #+#             */
-/*   Updated: 2025/09/16 19:33:17 by timtan           ###   ########.fr       */
+/*   Updated: 2025/09/20 19:36:39 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_cdlist	*ft_cdlstnew(int n, int position, int index) 
+t_cdlist	*ft_cdlstnew(long n, int position, int index) 
 {
 	t_cdlist	*new;
 
