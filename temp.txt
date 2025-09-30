@@ -1,0 +1,1 @@
+Maz's did okay on his push_swap. I ran his push_swap through a push_swap visualizer and a push_swap tester from github with multiple combinations of 100 and 500 random numbers. The program passed all the tests and but there was a few errors and redundancies in Maz's code. The Makefile
