@@ -6,22 +6,21 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 18:35:07 by timtan            #+#    #+#             */
-/*   Updated: 2025/09/22 15:14:03 by timtan           ###   ########.fr       */
+/*   Updated: 2025/09/23 19:40:57 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	exit_program(int error, t_cdlist **lst)
+int	exit_program(int error, t_cdlist **lst, t_cdlist **lst2)
 {
 	if (error)
-	{
 		write(2, "Error\n", 6);
-		n = 1;
-	}
 	if (lst && *lst)
 		ft_cdlstclear(lst);
-	exit (error);
+	if (lst2 && *lst2)
+		ft_cdlstclear(lst2);
+	exit(error);
 }
 
 static int	calculate_index(t_cdlist **lst, int n, int end)
@@ -96,7 +95,7 @@ int	main (int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	if (integrity_check(argc, argv))
-		exit_program(1, NULL);
+		exit_program(1, NULL, NULL);
 	//init_stacks();
 	stack_a = NULL;
 	stack_b = NULL;
@@ -105,12 +104,13 @@ int	main (int argc, char **argv)
 	{
 		if (ft_cdlstadd(&stack_a, ft_cdlstnew(ft_atol(argv[i]), i - 1,
 						calculate_index(&stack_a, ft_atol(argv[i]), i)), 0))
-			exit_program(1, &stack_a);
+			exit_program(1, &stack_a, &stack_b);
 		i++;
 	}
-	//
+	ft_cdlstprint(stack_a);
 	if (is_sorted(stack_a, stack_b))
-		exit_program(0, &stack_a);
+		exit_program(0, &stack_a, &stack_b);
 	sorting_algorithm(&stack_a, &stack_b);
-	return (0);
+	ft_cdlstprint(stack_a);
+	exit_program(0, &stack_a, &stack_b);
 }

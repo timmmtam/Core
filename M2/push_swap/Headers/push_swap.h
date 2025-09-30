@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 18:20:56 by timtan            #+#    #+#             */
-/*   Updated: 2025/09/20 19:36:58 by timtan           ###   ########.fr       */
+/*   Updated: 2025/09/23 19:45:49 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,8 @@ void		swap(t_cdlist **lst);
 void		rotate(t_cdlist **lst);
 void		r_rotate(t_cdlist **lst);
 void		push(t_cdlist **lst, t_cdlist **lst2);
+void		execute_move(char *str, t_cdlist **stack_a, t_cdlist **stack_b);
+void		sorting_algorithm(t_cdlist **stack_a, t_cdlist **stack_b);
+int			exit_program(int error, t_cdlist **lst, t_cdlist **lst2);
 
 #endif
