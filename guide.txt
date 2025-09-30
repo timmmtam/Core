@@ -1,0 +1,30 @@
+Feedback Project
+---------------------
+1. How did the evaluatee do on their project?
+2. What did I do to check their code? If there was a mistake/ error, what was it?
+3. What did we talk about?
+4. Have I done this project before?
+	If Yes:
+	- Is there anything that can be improved?
+	- What are some suggestions I can give?
+	- Highlight interesting/ unique parts of the project.
+	If No:
+	- What did I learn?
+	- What did I find interesting?
+5. Summary of how did the evaluation go and my opinion of the evaluatee's understanding of the project.
+6. Kind words.
+
+Feedback Evaluation
+---------------------
+1. How was the evaluator? Were they friendly, rude or kind? First impressions.
+2. How did the evaluation start and what did they do to check my code?
+3. Has the evaluator done this project before?
+	If Yes:
+	- Were they rigorous in checking my code?
+	- List out any cool insights they gave.
+	If No:
+	- What and how was their approach?
+	- List out any suggestions I have.
+4. How was the attitude of the evaluator? Was there anything I particularly enjoyed?
+5. Summary of how the evaluation went and my opinion of how well the evaluator evaluted my project.
+7. Grateful words.
