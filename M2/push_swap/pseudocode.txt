@@ -1,0 +1,23 @@
+START
+	Initialize the stacks
+	Parse the arguments
+		Handle multiple parameters & one string
+		Look for errors -> duplicate num, not num, overflow and underflow
+		Insert arguments into stack_a while indexing them.
+	If stack_a is not sorted, run the sorting algorithm.
+		If the size of stack_a is less than 3, run sort 3.
+		Else, push numbers from stack_a to stack_b while separating them into 4 quadrants until there are 3 numbers left in stack_a
+			Run sort 3
+		While there is at least 1 quadrant
+			While the current quadrant is not empty
+				Calculate the cheapest move for each number in the quadrant.
+				Perform the cheapest move while prioritizing larger numbers.
+				Print the instructions to stdout.
+			Repeat for the next quadrant
+	Clear the stacks.
+END
+
+To do:
+1. Push the numbers to stack_b.
+2. Calculate the cheapest move.
+3. Parse for one string.
