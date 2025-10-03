@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   free_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sming-zh <sming-zh@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 09:17:17 by sming-zh          #+#    #+#             */
-/*   Updated: 2025/05/19 09:19:19 by sming-zh         ###   ########.fr       */
+/*   Created: 2025/10/03 15:29:39 by timtan            #+#    #+#             */
+/*   Updated: 2025/10/03 15:30:23 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_isalnum(int c)
+void	free_split(char **str)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (1);
-	if (c >= 'a' && c <= 'z')
-		return (1);
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free (str);
+	str = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 17:26:50 by timtan            #+#    #+#             */
-/*   Updated: 2025/09/23 19:11:26 by timtan           ###   ########.fr       */
+/*   Updated: 2025/10/03 15:48:54 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	push(t_cdlist **lst, t_cdlist **lst2)
 
 	temp = *lst;
 	if (ft_cdlstadd(lst2, ft_cdlstnew((*lst)->n, 0, (*lst)->i), 1))
-		exit_program(1, lst, lst2);
+		exit_program(1, lst, lst2, NULL);
 	(*lst)->next->prev = (*lst)->prev;
 	(*lst)->prev->next = (*lst)->next;
 	*lst = (*lst)->next;

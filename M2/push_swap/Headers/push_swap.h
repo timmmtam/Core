@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 18:20:56 by timtan            #+#    #+#             */
-/*   Updated: 2025/09/23 19:45:49 by timtan           ###   ########.fr       */
+/*   Updated: 2025/10/03 15:48:15 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@ int			ft_cdlstadd(t_cdlist **lst, t_cdlist *new, int front);
 void		ft_cdlstclear(t_cdlist **lst);
 void		ft_cdlstprint(t_cdlist *lst);
 void		ft_cdlstprintone(t_cdlist *node);
+void		free_split(char **str);
 void		swap(t_cdlist **lst);
 void		rotate(t_cdlist **lst);
 void		r_rotate(t_cdlist **lst);
 void		push(t_cdlist **lst, t_cdlist **lst2);
 void		execute_move(char *str, t_cdlist **stack_a, t_cdlist **stack_b);
 void		sorting_algorithm(t_cdlist **stack_a, t_cdlist **stack_b);
-int			exit_program(int error, t_cdlist **lst, t_cdlist **lst2);
+void		init_stacks(t_cdlist **stack_a, t_cdlist **stack_b, int ac, char **av);
+int			is_sorted(t_cdlist *stack_a, t_cdlist *stack_b);
+int			exit_program(int error, t_cdlist **lst, t_cdlist **lst2, char **str);
 
 #endif

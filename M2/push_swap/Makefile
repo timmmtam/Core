@@ -6,13 +6,13 @@
 #    By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/13 18:30:48 by timtan            #+#    #+#              #
-#    Updated: 2025/09/23 19:24:22 by timtan           ###   ########.fr        #
+#    Updated: 2025/10/03 15:56:04 by timtan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-CFLAGS = -Wall -Wextra -Werror -IHeaders
+CFLAGS = -Wall -Wextra -Werror -IHeaders -g
 
 OBJDIR = objs
 
@@ -20,7 +20,8 @@ VPATH = srcs:srcs/operations:srcs/tools
 
 SRCS =	push_swap.c	ft_cdlstnew.c	ft_cdlstadd.c	ft_cdlstclear.c \
 		swap.c		ft_cdlstprint.c	rotate.c		ft_cdlstprintone.c \
-		push.c		sorting.c
+		push.c		sorting.c		init.c			execute.c \
+		free_split.c
 
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
