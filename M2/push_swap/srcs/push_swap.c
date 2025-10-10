@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 18:35:07 by timtan            #+#    #+#             */
-/*   Updated: 2025/10/03 17:57:59 by timtan           ###   ########.fr       */
+/*   Updated: 2025/10/10 12:43:56 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,16 @@ int	main (int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	init_stacks(&stack_a, &stack_b, argc, argv);
+	ft_printf("Stack A:\n");
 	ft_cdlstprint(stack_a);
+	ft_printf("Stack B:\n");
+	ft_cdlstprint(stack_b);
 	if (is_sorted(stack_a, stack_b))
 		exit_program(0, &stack_a, &stack_b, NULL);
 	sorting_algorithm(&stack_a, &stack_b);
+	ft_printf("Stack A:\n");
 	ft_cdlstprint(stack_a);
+	ft_printf("Stack B:\n");
+	ft_cdlstprint(stack_b);
 	exit_program(0, &stack_a, &stack_b, NULL);
 }

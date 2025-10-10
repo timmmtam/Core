@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:14:14 by timtan            #+#    #+#             */
-/*   Updated: 2025/10/03 19:53:09 by timtan           ###   ########.fr       */
+/*   Updated: 2025/10/10 12:43:53 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ static void	push_to_b(t_cdlist **stack_a, t_cdlist **stack_b)
 	int	q3;
 
 	q1 = (*stack_a)->prev->p / 4;
-	q2 = q1 * 2;
-	q3 = q1 * 3;
+	q2 = (*stack_a)->prev->p * 2 / 4;
+	q3 = (*stack_a)->prev->p * 3 / 4;
 	while ((*stack_a)->prev->p > q2)
 	{
 		if (((*stack_a)->i > q1 && (*stack_a)->i <= q2) ||
 				((*stack_a)->i > q2 && (*stack_a)->i <= q3))
 		{
-			if ((*stack_a)->i > q1 && (*stack_a)->i < q2)
+			if ((*stack_a)->i > q1 && (*stack_a)->i <= q2)
 				execute_move("pb", stack_a, stack_b);
 			else
 			{
@@ -91,6 +91,9 @@ static void	push_to_b(t_cdlist **stack_a, t_cdlist **stack_b)
 			execute_move("pb", stack_a, stack_b);
 	}
 }
+
+//There is a problem when doing it with 10 numbers (i = 9)
+//Check math
 
 void	sorting_algorithm(t_cdlist **stack_a, t_cdlist **stack_b)
 {
