@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 18:35:07 by timtan            #+#    #+#             */
-/*   Updated: 2025/10/10 12:43:56 by timtan           ###   ########.fr       */
+/*   Updated: 2025/11/03 00:13:53 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	exit_program(int error, t_cdlist **lst, t_cdlist **lst2, char **str)
 {
-	int	i;
-
-	i = 0;
 	if (error)
 		write(2, "Error\n", 6);
 	if (lst && *lst)
@@ -42,6 +39,7 @@ int	main (int argc, char **argv)
 	ft_cdlstprint(stack_a);
 	ft_printf("Stack B:\n");
 	ft_cdlstprint(stack_b);
+	//execute_move("pb", &stack_a, &stack_b);
 	if (is_sorted(stack_a, stack_b))
 		exit_program(0, &stack_a, &stack_b, NULL);
 	sorting_algorithm(&stack_a, &stack_b);

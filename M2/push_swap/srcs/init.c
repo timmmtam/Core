@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:39:20 by timtan            #+#    #+#             */
-/*   Updated: 2025/10/03 17:49:26 by timtan           ###   ########.fr       */
+/*   Updated: 2025/11/03 00:12:58 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,6 @@ static int	number_check(int ac, char **str)
 /*Checks whether input is a single string or multiple arguments*/
 static char	**parse_input(char **str, int ac, char **av, int *flag)
 {
-	int	i;
-
-	i = 0;
 	if (ac == 2)
 	{
 		str = ft_split(av[1], 32);

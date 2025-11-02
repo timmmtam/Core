@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:14:14 by timtan            #+#    #+#             */
-/*   Updated: 2025/10/12 18:43:02 by timtan           ###   ########.fr       */
+/*   Updated: 2025/11/02 19:21:50 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,25 +133,24 @@ static void	calculate_moves(t_cdlist **stack_a, t_cdlist **stack_b)
 	int	size_a;
 	int	size_b;
 	int	i;
-	int	moves;
 
 	size_a = (*stack_a)->prev->p;
 	size_b = (*stack_b)->prev->p;
 	i = 0;
-	while (i <= end_b)
+	while (i <= size_b)
 	{
-		if ((*stack-b)->target_p <= (size_a / 2))
-			moves = ((*stack_b)->target_p * 2) + 1;
+		if ((*stack_b)->target_p <= (size_a / 2))
+			(*stack_b)->moves = ((*stack_b)->target_p * 2) + 1;
 		else if ((*stack_b)->target_p == size_a)
-			moves = 3;
+			(*stack_b)->moves = 3;
 		else
-			moves = (size_a - (*stack_b)->target_p + 1) * 2 + 2;
+			(*stack_b)->moves = (size_a - (*stack_b)->target_p + 1) * 2 + 2;
 		*stack_b = (*stack_b)->next;
 		i++;
 	}
 }
 
-static void execute_best_move(**t_cdlist stack_a, **t_cdlist stack_b)
+static void execute_best_move(t_cdlist **stack_a, t_cdlist **stack_b)
 {
 	int	size_a;
 	int	rotate;
@@ -165,7 +164,7 @@ static void execute_best_move(**t_cdlist stack_a, **t_cdlist stack_b)
 		while (i++ < rotate)
 			execute_move("ra", stack_a, stack_b);
 		execute_move("pa", stack_a, stack_b);
-		while (i++ <= moves)
+		while (i++ <= (*stack_b)->moves)
 			execute_move("rra", stack_a, stack_b);
 	}
 	else
@@ -174,7 +173,7 @@ static void execute_best_move(**t_cdlist stack_a, **t_cdlist stack_b)
 		while (i++ < rotate)
 			execute_move("rra", stack_a, stack_b);
 		execute_move("pa", stack_a, stack_b);
-		while (i++ <= moves)
+		while (i++ <= (*stack_b)->moves)
 			execute_move("ra", stack_a, stack_b);
 	}
 }
