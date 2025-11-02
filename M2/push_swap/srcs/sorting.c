@@ -126,9 +126,57 @@ static void	get_target_p(t_cdlist **stack_a, t_cdlist **stack_b)
 	}
 }
 
+/*Calculate moves needed and assign them to stack
+still can be optimised for if size_a is even number then target_p = size_a / 2 + 1 is top*/
 static void	calculate_moves(t_cdlist **stack_a, t_cdlist **stack_b)
 {
+	int	size_a;
+	int	size_b;
+	int	i;
+	int	moves;
 
+	size_a = (*stack_a)->prev->p;
+	size_b = (*stack_b)->prev->p;
+	i = 0;
+	while (i <= end_b)
+	{
+		if ((*stack-b)->target_p <= (size_a / 2))
+			moves = ((*stack_b)->target_p * 2) + 1;
+		else if ((*stack_b)->target_p == size_a)
+			moves = 3;
+		else
+			moves = (size_a - (*stack_b)->target_p + 1) * 2 + 2;
+		*stack_b = (*stack_b)->next;
+		i++;
+	}
+}
+
+static void execute_best_move(**t_cdlist stack_a, **t_cdlist stack_b)
+{
+	int	size_a;
+	int	rotate;
+	int	i;
+
+	size_a = (*stack_a)->prev->p;
+	i = 0;
+	if ((*stack_b)->target_p <= size_a / 2)
+	{
+		rotate = (*stack_b)->target_p;
+		while (i++ < rotate)
+			execute_move("ra", stack_a, stack_b);
+		execute_move("pa", stack_a, stack_b);
+		while (i++ <= moves)
+			execute_move("rra", stack_a, stack_b);
+	}
+	else
+	{
+		rotate = ((*stack_b)->moves - 2) / 2;
+		while (i++ < rotate)
+			execute_move("rra", stack_a, stack_b);
+		execute_move("pa", stack_a, stack_b);
+		while (i++ <= moves)
+			execute_move("ra", stack_a, stack_b);
+	}
 }
 
 void	sorting_algorithm(t_cdlist **stack_a, t_cdlist **stack_b)
