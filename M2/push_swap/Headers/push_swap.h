@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 18:20:56 by timtan            #+#    #+#             */
-/*   Updated: 2025/10/12 18:26:28 by timtan           ###   ########.fr       */
+/*   Updated: 2025/11/09 21:44:20 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void		push(t_cdlist **lst, t_cdlist **lst2);
 void		execute_move(char *str, t_cdlist **stack_a, t_cdlist **stack_b);
 void		sorting_algorithm(t_cdlist **stack_a, t_cdlist **stack_b);
 void		init_stacks(t_cdlist **stack_a, t_cdlist **stack_b, int ac, char **av);
+void		push_to_b(t_cdlist **stack_a, t_cdlist **stack_b);
+void		execute_cheapest(t_cdlist **stack_a, t_cdlist **stack_b);
 int			is_sorted(t_cdlist *stack_a, t_cdlist *stack_b);
 int			exit_program(int error, t_cdlist **lst, t_cdlist **lst2, char **str);
 

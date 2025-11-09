@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cdlstprint.c                                    :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 19:28:27 by timtan            #+#    #+#             */
-/*   Updated: 2025/11/09 15:30:40 by timtan           ###   ########.fr       */
+/*   Created: 2025/11/09 21:18:18 by timtan            #+#    #+#             */
+/*   Updated: 2025/11/09 21:46:52 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_cdlstprint(t_cdlist *lst)
+int	is_sorted(t_cdlist *stack_a, t_cdlist *stack_b)
 {
 	int	i;
-	int	last;
+	int	end;
 
-	if (!lst)
+	if (!stack_a)
+		return (0);
+	if (stack_b)
+		return (0);
+	i = 0;
+	end = stack_a->prev->p;
+	while (i <= end)
 	{
-		write(1, "empty\n\n", 7);
-		return ;
-	}
-	i = 1;
-	last = lst->prev->p + 1;
-	write(1, "\n", 1);
-	while (i <= last)
-	{
-		ft_printf("Node %d, n = %d, p = %d, i = %d, moves = %d, tp = %d\n", i, lst->n, lst->p, lst->i, lst->moves, lst->target_p);
+		if (stack_a->p != stack_a->i)
+			return (0);
+		stack_a = stack_a->next;
 		i++;
-		lst = lst->next;
 	}
-	write(1, "\n", 1);
-	return ;
+	return (1);
 }

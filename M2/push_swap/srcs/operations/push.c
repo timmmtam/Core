@@ -6,13 +6,14 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 17:26:50 by timtan            #+#    #+#             */
-/*   Updated: 2025/10/03 15:48:54 by timtan           ###   ########.fr       */
+/*   Updated: 2025/11/09 19:35:02 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/**/
+/* Increases or decreases all position values by 1.
+ * Based on starting point given */
 static void	update_position(t_cdlist *start, int iterations, int increase)
 {
 	int	i;
@@ -32,6 +33,9 @@ static void	update_position(t_cdlist *start, int iterations, int increase)
 	return ;
 }
 
+/* Pushes a node from lst to lst2
+ * Does this by creating a new node in lst2,
+ * Freeing the top node of lst */
 void	push(t_cdlist **lst, t_cdlist **lst2)
 {
 	t_cdlist	*temp;
@@ -44,6 +48,8 @@ void	push(t_cdlist **lst, t_cdlist **lst2)
 	*lst = (*lst)->next;
 	(*lst)->p = 0;
 	update_position((*lst)->next, (*lst)->prev->p - 1, 0);
+	if ((*lst)->prev->p == 0)
+		*lst = NULL;
 	free(temp);
 	update_position((*lst2)->next, (*lst2)->prev->p + 1, 1);
 	return ;
