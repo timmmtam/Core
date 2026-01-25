@@ -43,13 +43,16 @@ void	push(t_cdlist **lst, t_cdlist **lst2)
 	temp = *lst;
 	if (ft_cdlstadd(lst2, ft_cdlstnew((*lst)->n, 0, (*lst)->i), 1))
 		exit_program(1, lst, lst2, NULL);
-	(*lst)->next->prev = (*lst)->prev;
-	(*lst)->prev->next = (*lst)->next;
-	*lst = (*lst)->next;
-	(*lst)->p = 0;
-	update_position((*lst)->next, (*lst)->prev->p - 1, 0);
 	if ((*lst)->prev->p == 0)
 		*lst = NULL;
+	else
+	{
+		(*lst)->next->prev = (*lst)->prev;
+		(*lst)->prev->next = (*lst)->next;
+		*lst = (*lst)->next;
+		(*lst)->p = 0;
+		update_position((*lst)->next, (*lst)->prev->p - 1, 0);
+	}
 	free(temp);
 	update_position((*lst2)->next, (*lst2)->prev->p + 1, 1);
 	return ;

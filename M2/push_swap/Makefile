@@ -6,22 +6,23 @@
 #    By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/13 18:30:48 by timtan            #+#    #+#              #
-#    Updated: 2025/11/09 22:01:07 by timtan           ###   ########.fr        #
+#    Updated: 2026/01/25 18:23:29 by timtan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-CFLAGS = -Wall -Wextra -Werror -IHeaders -g
+CFLAGS = -Wall -Wextra -Werror -IHeaders
 
 OBJDIR = objs
 
-VPATH = srcs:srcs/operations:srcs/tools:srcs/sort_utils
+VPATH = srcs:srcs/operations:srcs/tools:srcs/sorting
 
-SRCS =	push_swap.c		ft_cdlstnew.c	ft_cdlstadd.c	ft_cdlstclear.c \
-		swap.c			ft_cdlstprint.c	rotate.c		ft_cdlstprintone.c \
-		push.c			sort.c			init.c			execute.c \
-		free_split.c	push_to_b.c		is_sorted.c		execute_cheapest.c
+SRCS =	main.c			ft_cdlstnew.c		ft_cdlstadd.c	ft_cdlstclear.c \
+		swap.c			rotate.c			push.c			sort.c \
+		init.c			execute.c			free_split.c	push_to_b.c \
+		is_sorted.c		smallest_number.c	get_instructions.c \
+		execute_instruction.c
 
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 

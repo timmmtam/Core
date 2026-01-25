@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cdlstnew.c                                      :+:      :+:    :+:   */
+/*   smallest_number.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/15 18:40:04 by timtan            #+#    #+#             */
-/*   Updated: 2026/01/25 17:57:25 by timtan           ###   ########.fr       */
+/*   Created: 2026/01/22 12:58:40 by timtan            #+#    #+#             */
+/*   Updated: 2026/01/25 17:58:02 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_cdlist	*ft_cdlstnew(long n, int position, int index)
+/* Returns the position of the smallest number in the stack */
+int	smallest_number(t_cdlist *stack, int stack_size)
 {
-	t_cdlist	*new;
+	int	i;
+	int	smallest;
+	int	position;
 
-	if (index < 0)
-		return (NULL);
-	if (n < -2147483648 || n > 2147483647)
-		return (NULL);
-	new = malloc(sizeof(t_cdlist));
-	if (!new)
-		return (NULL);
-	new->n = n;
-	new->p = position;
-	new->i = index;
-	new->prev = new;
-	new->next = new;
-	return (new);
+	i = 0;
+	smallest = 100000;
+	position = 0;
+	while (i <= stack_size)
+	{
+		if (stack->i < smallest)
+		{
+			smallest = stack->i;
+			position = stack->p;
+		}
+		stack = stack->next;
+		i++;
+	}
+	return (position);
 }

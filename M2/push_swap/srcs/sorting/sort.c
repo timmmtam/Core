@@ -6,72 +6,62 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:14:14 by timtan            #+#    #+#             */
-/*   Updated: 2025/11/09 22:37:13 by timtan           ###   ########.fr       */
+/*   Updated: 2026/01/25 17:59:39 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
- * Assigns a target position to each node in stack_b,
- * By comparing its index value against each alement in stack_a
-*/
-static void	get_target_p(t_cdlist **stack_a, t_cdlist **stack_b)
+static void	final_sort(t_cdlist **stack_a)
 {
+	int	size_a;
+	int	smallest;
 	int	i;
-	int	j;
-	int	end_b;
-	int	end_a;
-	int	target_p;
 
-	if (!*stack_b)
-		return ;
+	size_a = (*stack_a)->prev->p;
+	smallest = smallest_number(*stack_a, size_a);
 	i = 0;
-	end_b = (*stack_b)->prev->p;
-	end_a = (*stack_a)->prev->p;
-	while (i <= end_b)
+	if (smallest <= size_a / 2)
 	{
-		target_p = 0;
-		j = 0;
-		while (j <= end_a)
-		{
-			if ((*stack_b)->i > (*stack_a)->i)
-				target_p += 1;
-			*stack_a = (*stack_a)->next;
-			j++;
-		}
-		(*stack_b)->target_p = target_p;
-		*stack_b = (*stack_b)->next;
-		i++;
+		while (i++ < smallest)
+			execute_move("ra", stack_a, NULL);
+	}
+	else
+	{
+		while (i++ < size_a - smallest + 1)
+			execute_move("rra", stack_a, NULL);
 	}
 }
 
 /*
- * Calculates the amount of moves required for each node-
- * to get to its target position in stack_a.
- * Determines whether the stack should be rotated or reverese rotated,
- * By finding the median of stack_a.
- * still can be optimised for if size_a is even number then target_p = size_a / 2 + 1 is top
+ * Assigns a target position to each node in stack_b,
+ * By comparing its index value against each alement in stack_a
 */
-
-static void	calculate_moves(t_cdlist **stack_a, t_cdlist **stack_b)
+static void	get_target_p(t_cdlist *stack_a, t_cdlist *stack_b)
 {
-	int	size_a;
-	int	size_b;
 	int	i;
+	int	j;
+	int	size_b;
+	int	size_a;
 
-	if (!*stack_b)
-		return ;
-	size_a = (*stack_a)->prev->p;
-	size_b = (*stack_b)->prev->p;
 	i = 0;
+	size_b = stack_b->prev->p;
+	size_a = stack_a->prev->p;
 	while (i <= size_b)
 	{
-		if ((*stack_b)->target_p <= (size_a / 2))
-			(*stack_b)->moves = ((*stack_b)->target_p * 2) + 1 + (i * 2);
-		else
-			(*stack_b)->moves = (size_a - (*stack_b)->target_p + 1) * 2 + 2 + (i * 2);
-		*stack_b = (*stack_b)->next;
+		j = 0;
+		stack_b->target_p = 0;
+		while (j++ <= size_a)
+		{
+			if (stack_b->i > stack_a->i && stack_b->i < stack_a->next->i)
+				stack_b->target_p = j;
+			stack_a = stack_a->next;
+		}
+		if (stack_b->target_p == 0)
+			stack_b->target_p = smallest_number(stack_a, size_a);
+		else if (stack_b->target_p == size_a + 1)
+			stack_b->target_p = 0;
+		stack_b = stack_b->next;
 		i++;
 	}
 }
@@ -83,7 +73,7 @@ static void	sort_3(t_cdlist **lst)
 {
 	if ((*lst)->n < (*lst)->next->n && (*lst)->next->n < (*lst)->prev->n)
 		return ;
-	else if((*lst)->n < (*lst)->next->n && (*lst)->prev->n > (*lst)->n)
+	else if ((*lst)->n < (*lst)->next->n && (*lst)->prev->n > (*lst)->n)
 	{
 		execute_move("rra", lst, NULL);
 		execute_move("sa", lst, NULL);
@@ -107,26 +97,26 @@ static void	sort_3(t_cdlist **lst)
  * Calculate the target position and no. of moves to return to stack_a,
  * Then execute one with the least amount of moves.
 */
-void	sorting_algorithm(t_cdlist **stack_a, t_cdlist **stack_b)
+void	sort(t_cdlist **stack_a, t_cdlist **stack_b)
 {
-	if ((*stack_a)->prev->p > 2)
+	int	instructions[7];
+
+	if ((*stack_a)->prev->p == 4)
+	{
+		execute_move("pb", stack_a, stack_b);
+		execute_move("pb", stack_a, stack_b);
+	}
+	else if ((*stack_a)->prev->p > 2)
 		push_to_b(stack_a, stack_b);
 	sort_3(stack_a);
 	if (is_sorted(*stack_a, *stack_b))
-			return ;
-	//while (*stack_b)
-	//{
-	ft_printf("After sort3:\n");
-	ft_cdlstprint(*stack_a);
-	ft_cdlstprint(*stack_b);
-	get_target_p(stack_a, stack_b);
-	ft_printf("After get_target_p:\n");
-	ft_cdlstprint(*stack_a);
-	ft_cdlstprint(*stack_b);
-	calculate_moves(stack_a, stack_b);
-	ft_printf("After calculate_moves:\n");
-	ft_cdlstprint(*stack_a);
-	ft_cdlstprint(*stack_b);
-	execute_cheapest(stack_a, stack_b);
-	//}
+		return ;
+	while (*stack_b)
+	{
+		get_target_p(*stack_a, *stack_b);
+		get_instructions(*stack_a, *stack_b, instructions);
+		exec_instruction(stack_a, stack_b, instructions);
+	}
+	if (!is_sorted(*stack_a, *stack_b))
+		final_sort(stack_a);
 }
