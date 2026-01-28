@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:12:54 by timtan            #+#    #+#             */
-/*   Updated: 2026/01/28 11:06:46 by timtan           ###   ########.fr       */
+/*   Updated: 2026/01/28 12:25:58 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 	int					pid;
 	int					i;
 
-	if (argc < 2 || argc > 4)
+	if (argc < 3 || argc > 3)
 	{
 		write(2, "Usage: ./client <pid> <string to send>\n", 39);
 		return (0);
