@@ -6,7 +6,7 @@
 #    By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/13 18:30:48 by timtan            #+#    #+#              #
-#    Updated: 2026/01/27 15:11:51 by timtan           ###   ########.fr        #
+#    Updated: 2026/01/29 12:10:24 by timtan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,19 +34,19 @@ $(OBJDIR)/%.o: %.c
 all: build_libft $(NAME) $(NAME2)
 
 build_libft:
-	$(MAKE) -C my_libft
+	$(MAKE) -C libft
 
 $(NAME): $(S_OBJS)
-	cc $(CFLAGS) $(S_OBJS) my_libft/libft.a -o $(NAME)
+	cc $(CFLAGS) $(S_OBJS) libft/libft.a -o $(NAME)
 
 $(NAME2): $(C_OBJS)
-	cc $(CFLAGS) $(C_OBJS) my_libft/libft.a -o $(NAME2)
+	cc $(CFLAGS) $(C_OBJS) libft/libft.a -o $(NAME2)
 
 clean:
 	rm -rf $(OBJDIR)
 
 fclean: clean
-	$(MAKE) -C my_libft fclean
+	$(MAKE) -C libft fclean
 	rm -f $(NAME)
 	rm -f $(NAME2)
 
