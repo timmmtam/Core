@@ -64,7 +64,7 @@ man getpid: To understand process identification.
 
 **Bitwise Operations:**
 
-Bitwise Operators in C - Wikipedia overview of bit manipulation.
+[Bitwise Operators in C](https://en.wikipedia.org/wiki/Bitwise_operations_in_C) - Wikipedia overview of bit manipulation.
 
 ### AI Usage
 This project utilized Artificial Intelligence tools for the following tasks:
