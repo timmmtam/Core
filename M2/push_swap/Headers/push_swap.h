@@ -6,14 +6,14 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 18:20:56 by timtan            #+#    #+#             */
-/*   Updated: 2026/01/25 18:17:05 by timtan           ###   ########.fr       */
+/*   Updated: 2026/02/09 10:05:24 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../my_libft/Headers/libft.h"
+# include "../libft/Headers/libft.h"
 
 typedef struct s_cdlist
 {
