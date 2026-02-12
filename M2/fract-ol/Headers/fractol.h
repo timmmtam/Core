@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 12:02:10 by timtan            #+#    #+#             */
-/*   Updated: 2026/02/09 18:05:05 by timtan           ###   ########.fr       */
+/*   Updated: 2026/02/12 15:22:03 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
 
-# define MAX_ITERATION 500
 # define WIDTH 800
 # define HEIGHT 800
 # define ESC 65307
@@ -39,11 +38,11 @@ typedef struct s_fractol
 	int		endian;
 	int		fractal;
 	int		render;
+	int		max_iteration;
 	double	zx;
 	double	zy;
 	double	cx;
 	double	cy;
-	int		color;
 	double	offset_x;
 	double	offset_y;
 	double	zoom;

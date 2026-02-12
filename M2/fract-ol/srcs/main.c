@@ -6,7 +6,7 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 12:05:10 by timtan            #+#    #+#             */
-/*   Updated: 2026/02/09 18:23:59 by timtan           ###   ########.fr       */
+/*   Updated: 2026/02/12 15:54:26 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,28 @@
 static void	init_fractol(t_fractol *fractol)
 {
 	fractol->mlx_ptr = mlx_init();
-	fractol->win_ptr = mlx_new_window(fractol->mlx_ptr, WIDTH, HEIGHT, "Fract-ol");
+	if (!fractol->mlx_ptr)
+		exit_program(fractol);
+	fractol->win_ptr = mlx_new_window(fractol->mlx_ptr, WIDTH, HEIGHT,
+			"Fract-ol");
+	if (!fractol->win_ptr)
+		exit_program(fractol);
 	fractol->img_ptr = mlx_new_image(fractol->mlx_ptr, WIDTH, HEIGHT);
-	fractol->pix_ptr = mlx_get_data_addr(fractol->img_ptr, &fractol->bpp, &fractol->line_size, &fractol->endian);
-	fractol->color = 0xFCBE11;
+	if (!fractol->img_ptr)
+		exit_program(fractol);
+	fractol->pix_ptr = mlx_get_data_addr(fractol->img_ptr, &fractol->bpp,
+			&fractol->line_size, &fractol->endian);
 	fractol->zoom = 200;
 	fractol->offset_x = -2;
 	fractol->offset_y = -2;
+	fractol->max_iteration = 100;
 	if (fractol->fractal == 0)
 	{
 		fractol->cx = -0.607;
 		fractol->cy = -0.419;
 	}
+	else if (fractol->fractal == 2)
+		fractol->offset_x = -2.3;
 }
 
 static int	check_param(int argc, char **argv, t_fractol *fractol)
@@ -55,17 +65,6 @@ static int	check_param(int argc, char **argv, t_fractol *fractol)
 	}
 	return (0);
 }
-
-/*static int	render_next_frame(t_fractol *fractol)
-{
-	if (fractol->render == 1)
-	{
-		fractol->render = 0;
-		draw_fractal(fractol);
-		mlx_put_image_to_window(fractol->mlx_ptr, fractol->win_ptr, fractol->img_ptr, 0, 0);
-	}
-	return (0);
-}*/
 
 int	main(int argc, char **argv)
 {

@@ -6,13 +6,13 @@
 /*   By: timtan <timtan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 15:36:15 by timtan            #+#    #+#             */
-/*   Updated: 2026/02/07 15:56:30 by timtan           ###   ########.fr       */
+/*   Updated: 2026/02/12 15:20:00 by timtan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static double count_decimal(double *result, const char *nptr, int i)
+static double	count_decimal(double *result, const char *nptr, int i)
 {
 	double	power;
 
@@ -32,7 +32,7 @@ static double count_decimal(double *result, const char *nptr, int i)
 
 double	ft_atof(const char *nptr)
 {
-	int	i;
+	int		i;
 	double	sign;
 	double	result;
 	double	power;
