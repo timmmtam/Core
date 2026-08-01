@@ -1,0 +1,5 @@
+**/.devcontainer
+**/objs
+*.a
+.DS_Store
+**/minilibx*

@@ -1,69 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
 
-#define BUFFER_SIZE 10000
+#define BUFFER_SIZE 42
 
-void	search_buffer(char *buffer, int buf_len, char *search_str, int search_len)
-{
-	int		search_index;
-	char	*search_found;
+void filter(char *result, char *target) {
+  size_t i;
+  size_t j;
+  size_t k;
+  size_t target_len;
 
-	search_index = 0;
-	search_found = NULL;
-	while (buffer[search_index] != 0)
-	{
-		if ((search_found = memmem(&buffer[search_index], buf_len, search_str, search_len)))
-		{
-			memset(search_found, '*', search_len);
-			search_index += search_len;
-			search_found = NULL;
-		}
-		else
-			search_index++;
-	}
-	printf("%s", buffer);
+  target_len = strlen(target);
+  i = 0;
+  printf("%s\n", result);
+  while (result[i] != '\0') {
+    j = 0;
+    while (target[j] != '\0' && result[i + j] == target[j])
+      j++;
+    if (j == target_len) {
+      for (k = 0; k < target_len; k++)
+        write(1, "*", 1);
+      i += target_len;
+    } else {
+      write(1, &result[i], 1);
+      i++;
+    }
+  }
 }
 
-int	main(int ac, char **av)
-{
-	char	read_char;
-	char	*buffer;
-	ssize_t	read_bytes;
-	int		buf_index;
-	int		search_len;
+int main(int ac, char **av) {
+  ssize_t read_bytes;
+  ssize_t total_read;
+  char buffer[BUFFER_SIZE + 1];
+  char *result;
 
-	if (ac != 2)
-		return (1);
-	if (av[1][0] == '\0')
-		return (1);
-	search_len = (int)strlen(av[1]);
-	buffer = malloc(BUFFER_SIZE);
-	if (!buffer)
-	{
-		perror("Error");
-		return (1);
-	}
-	buf_index = 0;
-	while ((read_bytes = read(0, &read_char, 1) != 0))
-	{
-		if (read_bytes < 0)
-		{
-			perror("Error");
-			free(buffer);
-			return (1);
-		}
-		buffer[buf_index++] = read_char;
-		if (read_char == '\n')
-		{
-			buffer[buf_index] = '\0';
-			search_buffer(buffer, strlen(buffer), av[1], search_len);
-			buf_index = 0;
-		}
-	}
-	buffer[buf_index] = '\0';
-	search_buffer(buffer, strlen(buffer), av[1], search_len);
-	free(buffer);
-	return (0);
+  if (ac != 2 || av[1][0] == '\0')
+    return (1);
+  total_read = 0;
+  result = NULL;
+  while ((read_bytes = read(0, buffer, BUFFER_SIZE)) > 0) {
+    buffer[BUFFER_SIZE] = '\0';
+    result = realloc(result, total_read + read_bytes + 1);
+    if (!result)
+      return (perror("Realloc"), 1);
+    memmove(result + total_read, buffer, read_bytes + 1);
+    total_read += read_bytes;
+  }
+  if (read_bytes < 0)
+    return (free(result), perror("Read"), 1);
+  if (!result)
+    return (0);
+  filter(result, av[1]);
+  return (free(result), 0);
 }
